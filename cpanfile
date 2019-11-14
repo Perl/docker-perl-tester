@@ -1,3 +1,6 @@
+use strict;      # satisfy linter
+use warnings;    # satisfy linter
+
 requires 'Code::TidyAll::Plugin::SortLines::Naturally';
 requires 'Code::TidyAll::Plugin::Test::Vars';
 requires 'Code::TidyAll::Plugin::UniqueLines';
