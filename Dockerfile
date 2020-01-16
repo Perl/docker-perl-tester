@@ -11,6 +11,6 @@ RUN apt-get update && \
 
 RUN curl -sL https://cpanmin.us/ | perl - App::cpanminus && \
         cpanm -nq App::cpm && \
-        cpm install -g --cpanfile /tmp/cpanfile
+        cpm install -g --show-build-log-on-failure --cpanfile /tmp/cpanfile
 
 CMD ["/bin/bash"]
