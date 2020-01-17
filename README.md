@@ -9,7 +9,7 @@ pre-installed bits:
 * `Devel::Cover`
 * various testing modules (see `cpanfile` in this repo)
 
-# List of modules
+# List of Perl modules
 
 ## Available on all Perl Versions
 
@@ -74,6 +74,66 @@ perldocker/perl-tester:v5.8
 # Continuous Integrations
 
 ## Using the images with GitHub Workflow
+
+Here is a sample workflow for Linux running on all Perl version 5.8 to 5.30
+You can save the content in `.github/workflow/linux.yml`.
+
+Note: this example is using cpm to install the dependencies from a cpanfile.
+You can comment this line or use Dist::Zilla instead for supported Perl versions.
+
+```
+name: linux
+
+on:
+  push:
+    branches:
+      - '*'
+    tags-ignore:
+      - '*'
+  pull_request:
+
+jobs:
+  perl:
+    env:
+      # some plugins still needs this to run their tests...
+      PERL_USE_UNSAFE_INC: 0
+      AUTHOR_TESTING: 1
+      AUTOMATED_TESTING: 1
+      RELEASE_TESTING: 1
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        perl-version:
+          - 'latest'
+          - '5.28'
+          - '5.26'
+          - '5.24'
+          - '5.22'
+          - '5.20'
+          - '5.18'
+          - '5.16'
+          - '5.14'
+          - '5.12'
+          - '5.10'
+          - '5.8'
+
+    container:
+      image: perldocker/perl-tester:v${{ matrix.perl-version }}
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: perl -V
+        run: perl -V
+      - name: Install Dependencies
+        run: cpm install -g --no-test --show-build-log-on-failure --cpanfile cpanfile
+      - name: Makefile.PL
+        run: perl Makefile.PL
+      - name: make test
+        run: make test
+```
 
 ...
 
