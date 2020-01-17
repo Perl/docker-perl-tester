@@ -154,4 +154,4 @@ The images can be found at [https://hub.docker.com/repository/docker/perldocker/
 
 # Author
 
-Oalef initiated the project.
+Oalders initiated the project and atoomic tried to give it more public visibility.
