@@ -114,7 +114,7 @@ jobs:
       fail-fast: false
       matrix:
         perl-version:
-          - 'latest'
+          - '5.30'
           - '5.28'
           - '5.26'
           - '5.24'
