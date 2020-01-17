@@ -18,6 +18,7 @@ This repo is used to build Perl Docker images with various pre-installed bits:
 * Devel::Cover
 * Devel::Cover::Report::Codecov
 * Devel::Cover::Report::Coveralls
+* ExtUtils::MakeMaker
 * File::Temp
 * List::MoreUtils
 * Module::Build
@@ -37,10 +38,12 @@ This repo is used to build Perl Docker images with various pre-installed bits:
 * Test::Mojibake
 * Test::More
 * Test::Needs
+* Test::Notabs
 * Test::Pod
 * Test::Pod::Coverage
 * Test::Portability::Files
 * Test::RequiresInternet
+* Test::Simple
 * Test::Spelling
 * Test::Synopsis
 * Test::Version
