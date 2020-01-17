@@ -27,6 +27,7 @@ requires 'Test::MockModule';
 requires 'Test::Mojibake';
 requires 'Test::More';
 requires 'Test::Needs';
+requires 'Test::NoTabs';
 requires 'Test::Pod';
 requires 'Test::Pod::Coverage';
 requires 'Test::Portability::Files';
