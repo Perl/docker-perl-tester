@@ -37,4 +37,10 @@ requires 'Test::Vars' if "$]" >= 5.010;
 requires 'Test::Version';
 requires 'Test::Warnings';
 
-requires 'Dist::Zilla::PluginBundle::Author::ETHER' if "$]" >= 5.014;
+if ( "$]" >= 5.014 ) {
+	requires 'Dist::Zilla::PluginBundle::Author::ETHER';
+	requires 'Dist::Zilla::PluginBundle::RJBS';
+	requires 'Dist::Zilla::PluginBundle::Milla';
+	requires 'Dist::Zilla::Plugin::OurPkgVersion';
+	# ...
+}
