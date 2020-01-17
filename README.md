@@ -1,13 +1,13 @@
 # docker-perl-tester
 
-This repo contains a script which builds Docker images with various
-pre-installed bits:
+This repo is used to build Perl Docker images with various pre-installed bits:
 
 * the `aspell` and `aspell-en` packages
 * `cpanminus`
 * `App::cpm`
 * `Devel::Cover`
-* various testing modules (see `cpanfile` in this repo)
+* various testing modules
+* Dist::Zilla with some common plugins (for Perl >= 5.14)
 
 # List of Perl modules
 
@@ -52,23 +52,30 @@ pre-installed bits:
 * Pod::Readme
 * Test::Vars
 
+## Only on Perl 5.14 and later
+
+* Dist::Zilla & friends
+* Dist::Zilla::PluginBundle::Author::ETHER
+
 # Using Docker Images for your projects
 
-The following tags are available
+The images can be found at [https://hub.docker.com/repository/docker/perldocker/perl-tester/](https://hub.docker.com/repository/docker/perldocker/perl-tester/)
+
+The following tags are available from the repository `perldocker/perl-tester`
 
 ```
-perldocker/perl-tester:v5.30
-perldocker/perl-tester:v5.28
-perldocker/perl-tester:v5.26
-perldocker/perl-tester:v5.24
-perldocker/perl-tester:v5.22
-perldocker/perl-tester:v5.20
-perldocker/perl-tester:v5.18
-perldocker/perl-tester:v5.16
-perldocker/perl-tester:v5.14
-perldocker/perl-tester:v5.12
-perldocker/perl-tester:v5.10
-perldocker/perl-tester:v5.8
+v5.30
+v5.28
+v5.26
+v5.24
+v5.22
+v5.20
+v5.18
+v5.16
+v5.14
+v5.12
+v5.10
+v5.8
 ```
 
 # Continuous Integrations
@@ -149,8 +156,6 @@ DOCKER_REPO=perldocker/perl-tester
 DOCKER_USERNAME=username
 DOCKER_GITHUB_TOKEN=a-token-or-password
 ```
-
-The images can be found at [https://hub.docker.com/repository/docker/perldocker/perl-tester/](https://hub.docker.com/repository/docker/perldocker/perl-tester/)
 
 # Author
 
