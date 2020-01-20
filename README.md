@@ -9,6 +9,12 @@ This repo is used to build Perl Docker images with various pre-installed bits:
 * various testing modules
 * Dist::Zilla with some common plugins (for Perl >= 5.14)
 
+At this points images are refreshed daily, which could change overtime if it becomes an issue.
+This should guarantee you to test uptodate CPAN stack.
+
+Note: if one dependency fails to install, this should not impact you as the image would not be published
+on failures.
+
 # List of Perl modules
 
 ## Available on all Perl Versions
@@ -67,18 +73,18 @@ The images can be found at [https://hub.docker.com/repository/docker/perldocker/
 The following tags are available from the repository `perldocker/perl-tester`
 
 ```
-v5.30
-v5.28
-v5.26
-v5.24
-v5.22
-v5.20
-v5.18
-v5.16
-v5.14
-v5.12
-v5.10
-v5.8
+5.30
+5.28
+5.26
+5.24
+5.22
+5.20
+5.18
+5.16
+5.14
+5.12
+5.10
+5.8
 ```
 
 # Continuous Integrations
@@ -131,7 +137,7 @@ jobs:
           - '5.8'
 
     container:
-      image: perldocker/perl-tester:v${{ matrix.perl-version }}
+      image: perldocker/perl-tester:${{ matrix.perl-version }}
 
     steps:
       - uses: actions/checkout@v1
@@ -145,14 +151,14 @@ jobs:
         run: make test
 ```
 
-...
+You can find more details on how to setup GitHub workflow to smoke Perl projects by reading [skaji/perl-github-actions-sample](https://github.com/skaji/perl-github-actions-sample) GitHub repository.
 
 ## Building Docker images
 
 When pushing to GitHub, it's using a GitHub action `.github/workflows/publish-to-docker.yml`
 to automagically build and publish the docker images for you.
 
-If you consider cloning this repository, you wouldhave to set in your GitHub repository the following secret variables, with some example values.
+If you consider cloning this repository, you would have to set in your GitHub repository the following secret variables, with some example values.
 
 ```
 DOCKER_REPO=perldocker/perl-tester
@@ -162,4 +168,5 @@ DOCKER_GITHUB_TOKEN=a-token-or-password
 
 # Author
 
-Oalders initiated the project and atoomic tried to give it more public visibility.
+@oalders initiated the project and @atoomic tried to give it more public visibility
+volunteers/ideas are welcome to improve the project.

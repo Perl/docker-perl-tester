@@ -39,4 +39,4 @@ jobs:
         password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
         dockerfile: Dockerfile
         buildargs: BASE=${{ matrix.perl-version }}
-        tags: "v${{ matrix.perl-version }}"
+        tags: "${{ matrix.perl-version }}"
