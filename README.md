@@ -2,12 +2,12 @@
 
 This repo is used to build Perl Docker images with various pre-installed bits:
 
-* the `aspell` and `aspell-en` packages
-* `cpanminus`
-* `App::cpm`
-* `Devel::Cover`
-* various testing modules
-* Dist::Zilla with some common plugins (for Perl >= 5.14)
+- the `aspell` and `aspell-en` packages
+- `cpanminus`
+- `App::cpm`
+- `Devel::Cover`
+- various testing modules
+- Dist::Zilla with some common plugins (for Perl >= 5.14)
 
 At this points images are refreshed daily, which could change overtime if it becomes an issue.
 This should guarantee you to test uptodate CPAN stack.
@@ -19,52 +19,52 @@ on failures.
 
 ## Available on all Perl Versions
 
-* Code::TidyAll::Plugin::SortLines::Naturally
-* Code::TidyAll::Plugin::UniqueLines
-* Devel::Cover
-* Devel::Cover::Report::Codecov
-* Devel::Cover::Report::Coveralls
-* ExtUtils::MakeMaker
-* File::Temp
-* List::MoreUtils
-* Module::Build
-* Pod::Coverage::TrustPod
-* Test2::Bundle::Extended
-* Test2::Plugin::NoWarnings
-* Test2::Suite
-* Test2::Tools::Explain
-* Test::Builder
-* Test::CPAN::Meta
-* Test::Deep
-* Test::Differences
-* Test::EOL
-* Test::Fatal
-* Test::MinimumVersion
-* Test::MockModule
-* Test::Mojibake
-* Test::More
-* Test::Needs
-* Test::Notabs
-* Test::Pod
-* Test::Pod::Coverage
-* Test::Portability::Files
-* Test::RequiresInternet
-* Test::Simple
-* Test::Spelling
-* Test::Synopsis
-* Test::Version
-* Test::Warnings
+- Code::TidyAll::Plugin::SortLines::Naturally
+- Code::TidyAll::Plugin::UniqueLines
+- Devel::Cover
+- Devel::Cover::Report::Codecov
+- Devel::Cover::Report::Coveralls
+- ExtUtils::MakeMaker
+- File::Temp
+- List::MoreUtils
+- Module::Build
+- Pod::Coverage::TrustPod
+- Test2::Bundle::Extended
+- Test2::Plugin::NoWarnings
+- Test2::Suite
+- Test2::Tools::Explain
+- Test::Builder
+- Test::CPAN::Meta
+- Test::Deep
+- Test::Differences
+- Test::EOL
+- Test::Fatal
+- Test::MinimumVersion
+- Test::MockModule
+- Test::Mojibake
+- Test::More
+- Test::Needs
+- Test::Notabs
+- Test::Pod
+- Test::Pod::Coverage
+- Test::Portability::Files
+- Test::RequiresInternet
+- Test::Simple
+- Test::Spelling
+- Test::Synopsis
+- Test::Version
+- Test::Warnings
 
 ## Only on Perl 5.10 and later
 
-* Code::TidyAll::Plugin::Test::Vars
-* Pod::Readme
-* Test::Vars
+- Code::TidyAll::Plugin::Test::Vars
+- Pod::Readme
+- Test::Vars
 
 ## Only on Perl 5.14 and later
 
-* Dist::Zilla & friends
-* Dist::Zilla::PluginBundle::Author::ETHER
+- Dist::Zilla & friends
+- Dist::Zilla::PluginBundle::Author::ETHER
 
 # Using Docker Images for your projects
 
