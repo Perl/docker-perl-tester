@@ -97,7 +97,7 @@ You can save the content in `.github/workflow/linux.yml`.
 Note: this example is using cpm to install the dependencies from a cpanfile.
 You can comment this line or use Dist::Zilla instead for supported Perl versions.
 
-```
+```yaml
 name: linux
 
 on:
