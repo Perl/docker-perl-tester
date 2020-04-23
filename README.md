@@ -140,7 +140,7 @@ jobs:
       image: perldocker/perl-tester:${{ matrix.perl-version }}
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: perl -V
         run: perl -V
       - name: Install Dependencies
@@ -152,6 +152,12 @@ jobs:
 ```
 
 You can find more details on how to setup GitHub workflow to smoke Perl projects by reading [skaji/perl-github-actions-sample](https://github.com/skaji/perl-github-actions-sample) GitHub repository.
+
+## Using GitHub actions
+
+You can also consider using GitHub actions:
+- [perl-actions/install-with-cpanm](https://github.com/perl-actions/install-with-cpanm)
+- [perl-actions/install-with-cpm](https://github.com/perl-actions/install-with-cpm)
 
 ## Building Docker images
 
