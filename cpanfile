@@ -1,6 +1,7 @@
 use strict;      # satisfy linter
 use warnings;    # satisfy linter
 
+requires 'App::cpanoutdated';
 requires 'Code::TidyAll::Plugin::SortLines::Naturally';
 requires 'Code::TidyAll::Plugin::Test::Vars' if "$]" >= 5.010;
 requires 'Code::TidyAll::Plugin::UniqueLines';
