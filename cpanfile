@@ -48,6 +48,7 @@ if ( "$]" >= 5.010 ) {
 
 if ( "$]" >= 5.014 ) {
     requires 'Dist::Zilla::PluginBundle::Author::ETHER';
+    requires 'Dist::Zilla::PluginBundle::Author::OALDERS';
     requires 'Dist::Zilla::PluginBundle::RJBS';
     requires 'Dist::Zilla::PluginBundle::Milla';
     requires 'Dist::Zilla::Plugin::OurPkgVersion';
