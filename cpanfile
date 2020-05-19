@@ -3,11 +3,7 @@ use warnings;    # satisfy linter
 
 requires 'App::cpanoutdated';
 requires 'Code::TidyAll::Plugin::SortLines::Naturally';
-requires 'Code::TidyAll::Plugin::Test::Vars' if "$]" >= 5.010;
 requires 'Code::TidyAll::Plugin::UniqueLines';
-requires 'Devel::Cover';
-requires 'Devel::Cover::Report::Codecov';
-requires 'Devel::Cover::Report::Coveralls';
 requires 'ExtUtils::MakeMaker';
 requires 'File::Temp';
 requires 'List::MoreUtils';
@@ -43,10 +39,18 @@ requires 'Test::Vars' if "$]" >= 5.010;
 requires 'Test::Version';
 requires 'Test::Warnings';
 
+if ( "$]" >= 5.010 ) {
+    requires 'Code::TidyAll::Plugin::Test::Vars';
+    requires 'Devel::Cover';
+    requires 'Devel::Cover::Report::Codecov';
+    requires 'Devel::Cover::Report::Coveralls';
+}
+
 if ( "$]" >= 5.014 ) {
-	requires 'Dist::Zilla::PluginBundle::Author::ETHER';
-	requires 'Dist::Zilla::PluginBundle::RJBS';
-	requires 'Dist::Zilla::PluginBundle::Milla';
-	requires 'Dist::Zilla::Plugin::OurPkgVersion';
-	# ...
+    requires 'Dist::Zilla::PluginBundle::Author::ETHER';
+    requires 'Dist::Zilla::PluginBundle::RJBS';
+    requires 'Dist::Zilla::PluginBundle::Milla';
+    requires 'Dist::Zilla::Plugin::OurPkgVersion';
+
+    # ...
 }
