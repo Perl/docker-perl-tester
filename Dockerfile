@@ -20,4 +20,9 @@ RUN cpm install -g --show-build-log-on-failure --cpanfile /tmp/cpanfile
 
 RUN cpan-outdated --exclude-core -p | xargs -n1 cpanm
 
+WORKDIR /tmp/
+RUN git clone https://github.com/oalders/github-perl-helpers.git --depth 1 && \
+    cp github-perl-helpers/bin/* /usr/local/bin/ && \
+    rm -rf github-perl-helpers
+
 CMD ["/bin/bash"]
