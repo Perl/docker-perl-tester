@@ -12,7 +12,7 @@ RUN apt-get update && \
         apt-get -y --no-install-recommends install aspell aspell-en
 
 RUN cpanm --self-upgrade || \
-	( echo "# Installing cpanminus:"; curl -sL https://cpanmin.us/ | perl - App::cpanminus )
+    ( echo "# Installing cpanminus:"; curl -sL https://cpanmin.us/ | perl - App::cpanminus )
 
 RUN cpanm -nq App::cpm Carton::Snapshot
 
