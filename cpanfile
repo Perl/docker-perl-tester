@@ -7,6 +7,7 @@ requires 'Code::TidyAll::Plugin::UniqueLines';
 requires 'ExtUtils::MakeMaker';
 requires 'File::Temp';
 requires 'List::MoreUtils';
+requires 'Minilla';
 requires 'Module::Build';
 requires 'Perl::Critic';
 requires 'Perl::Tidy';
