@@ -7,7 +7,6 @@ requires 'Code::TidyAll::Plugin::UniqueLines';
 requires 'ExtUtils::MakeMaker';
 requires 'File::Temp';
 requires 'List::MoreUtils';
-requires 'Minilla';
 requires 'Module::Build';
 requires 'Perl::Critic';
 requires 'Perl::Tidy';
@@ -45,6 +44,7 @@ if ( "$]" >= 5.010 ) {
     requires 'Devel::Cover';
     requires 'Devel::Cover::Report::Codecov';
     requires 'Devel::Cover::Report::Coveralls';
+    requires 'Minilla';
 }
 
 if ( "$]" >= 5.014 ) {
