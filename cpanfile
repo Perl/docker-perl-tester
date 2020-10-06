@@ -10,6 +10,7 @@ requires 'List::MoreUtils';
 requires 'Module::Build';
 requires 'Perl::Critic';
 requires 'Perl::Tidy';
+requires 'Plack::Test';
 requires 'Pod::Coverage::TrustPod';
 requires 'Pod::Readme' if "$]" >= 5.010001;
 requires 'Test2::Bundle::Extended';
