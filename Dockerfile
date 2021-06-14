@@ -21,7 +21,7 @@ RUN cpm install -g --show-build-log-on-failure --cpanfile /tmp/cpanfile
 RUN cpan-outdated --exclude-core -p | xargs -n1 cpanm
 
 WORKDIR /tmp/
-RUN git clone https://github.com/oalders/ci-perl-tester-helpers.git --depth 1 && \
+RUN git clone https://github.com/perl-actions/ci-perl-tester-helpers.git --depth 1 && \
     cp ci-perl-tester-helpers/bin/* /usr/local/bin/ && \
     rm -rf ci-perl-tester-helpers
 
