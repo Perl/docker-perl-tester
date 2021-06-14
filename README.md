@@ -73,6 +73,7 @@ The images can be found at [https://hub.docker.com/repository/docker/perldocker/
 The following tags are available from the repository `perldocker/perl-tester`
 
 ```
+5.34
 5.32
 5.30
 5.28
@@ -124,6 +125,7 @@ jobs:
       fail-fast: false
       matrix:
         perl-version:
+          - '5.34'        
           - '5.32'
           - '5.30'
           - '5.28'
