@@ -48,7 +48,7 @@ if ( "$]" >= 5.010 ) {
     requires 'Minilla';
 }
 
-if ( "$]" >= 5.014 ) {
+if ( "$]" >= 5.020 ) {
     requires 'Dist::Zilla::PluginBundle::Author::ETHER';
     requires 'Dist::Zilla::PluginBundle::Author::OALDERS';
     requires 'Dist::Zilla::PluginBundle::RJBS';
