@@ -2,8 +2,6 @@ use strict;      # satisfy linter
 use warnings;    # satisfy linter
 
 requires 'App::cpanoutdated';
-requires 'Code::TidyAll::Plugin::SortLines::Naturally';
-requires 'Code::TidyAll::Plugin::UniqueLines';
 requires 'ExtUtils::MakeMaker';
 requires 'File::Temp';
 requires 'List::MoreUtils';
@@ -11,7 +9,6 @@ requires 'Module::Build';
 requires 'Perl::Critic';
 requires 'Perl::Tidy';
 requires 'Plack::Test';
-requires 'Pod::Coverage::TrustPod';
 requires 'Pod::Readme' if "$]" >= 5.010001;
 requires 'Software::License::Perl_5';
 requires 'Test2::Bundle::Extended';
@@ -38,16 +35,22 @@ requires 'Test::RequiresInternet';
 requires 'Test::Simple';
 requires 'Test::Spelling';
 requires 'Test::Synopsis';
-requires 'Test::Vars' if "$]" >= 5.010;
 requires 'Test::Version';
 requires 'Test::Warnings';
 
 if ( "$]" >= 5.010 ) {
-    requires 'Code::TidyAll::Plugin::Test::Vars';
     requires 'Devel::Cover';
     requires 'Devel::Cover::Report::Codecov';
     requires 'Devel::Cover::Report::Coveralls';
     requires 'Minilla';
+    requires 'Test::Vars';
+}
+
+if ( "$]" >= 5.012 ) {
+    requires 'Code::TidyAll::Plugin::SortLines::Naturally';
+    requires 'Code::TidyAll::Plugin::Test::Vars';
+    requires 'Code::TidyAll::Plugin::UniqueLines';
+    requires 'Pod::Coverage::TrustPod';
 }
 
 if ( "$]" >= 5.020 ) {
