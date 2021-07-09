@@ -4,7 +4,7 @@ name: Publish to Docker
 on:
   push:
     branches:
-      - "master"
+      - "main"
   schedule:
     - cron: "10 6 * * *"
 
@@ -33,9 +33,9 @@ jobs:
           - "5.8"
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@master
+        uses: elgohr/Publish-Docker-Github-Action@v3
         with:
           name: ${{ secrets.DOCKER_REPO }}
           username: ${{ secrets.DOCKER_USERNAME }}
