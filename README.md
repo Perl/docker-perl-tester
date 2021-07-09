@@ -176,6 +176,10 @@ DOCKER_USERNAME=username
 DOCKER_GITHUB_TOKEN=a-token-or-password
 ```
 
+## Developer Notes:
+
+The main branch is named `main` and not `master`.
+
 # Author
 
 @oalders initiated the project and @atoomic tried to give it more public visibility
