@@ -1,5 +1,5 @@
 ARG BASE
-FROM perl:${BASE}
+FROM perl:${BASE}-stretch
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
