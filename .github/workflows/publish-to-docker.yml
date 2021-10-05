@@ -10,7 +10,7 @@ on:
 
 jobs:
 
-  build:
+  latest-build:
     name: "Build latest"
     runs-on: ubuntu-latest
     steps:
