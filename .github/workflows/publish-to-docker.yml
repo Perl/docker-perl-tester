@@ -23,7 +23,7 @@ jobs:
           password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
           dockerfile: Dockerfile
           buildargs: BASE=buster
-          tags: ["latest","buster"]
+          tags: "latest,buster"
 
   build:
     name: "Build versions"
