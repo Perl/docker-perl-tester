@@ -1,5 +1,5 @@
 ARG BASE
-FROM perl:${BASE}-buster
+FROM perl:${BASE}
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
