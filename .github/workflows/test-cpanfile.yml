@@ -9,7 +9,7 @@ jobs:
   test-job:
     runs-on: ubuntu-latest
     container:
-      image: perl:${{ matrix.perl-version }}-stretch
+      image: perl:${{ matrix.perl-version }}-buster
     strategy:
       fail-fast: false
       matrix:
