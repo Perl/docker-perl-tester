@@ -58,8 +58,11 @@ on failures.
 ## Only on Perl 5.10 and later
 
 - Code::TidyAll::Plugin::Test::Vars
-- Pod::Readme
 - Test::Vars
+
+## Only on Perl 5.12 and later
+
+- Pod::Readme
 
 ## Only on Perl 5.14 and later
 
