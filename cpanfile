@@ -9,7 +9,7 @@ requires 'Module::Build';
 requires 'Perl::Critic';
 requires 'Perl::Tidy';
 requires 'Plack::Test';
-requires 'Pod::Readme' if "$]" >= 5.010001;
+requires 'Pod::Readme' if "$]" >= 5.012000;
 requires 'Software::License::Perl_5';
 requires 'Test2::Bundle::Extended';
 requires 'Test2::Plugin::NoWarnings';
