@@ -7,7 +7,7 @@ requires 'File::Temp';
 requires 'List::MoreUtils';
 requires 'Module::Build';
 requires 'Perl::Critic';
-requires 'Perl::Tidy';
+requires 'Perl::Tidy', '>= 20220217';
 requires 'Plack::Test';
 requires 'Pod::Readme' if "$]" >= 5.012000;
 requires 'Software::License::Perl_5';
