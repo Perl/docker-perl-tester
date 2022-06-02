@@ -76,6 +76,7 @@ The images can be found at [https://hub.docker.com/repository/docker/perldocker/
 The following tags are available from the repository `perldocker/perl-tester`
 
 ```
+5.36
 5.34
 5.32
 5.30
@@ -96,7 +97,7 @@ The following tags are available from the repository `perldocker/perl-tester`
 
 ## Using the images with GitHub Workflow
 
-Here is a sample workflow for Linux running on all Perl version 5.8 to 5.32
+Here is a sample workflow for Linux running on all Perl version 5.8 to 5.36
 You can save the content in `.github/workflow/linux.yml`.
 
 Note: this example is using cpm to install the dependencies from a cpanfile.
@@ -128,6 +129,7 @@ jobs:
       fail-fast: false
       matrix:
         perl-version:
+          - '5.36'
           - '5.34'        
           - '5.32'
           - '5.30'
