@@ -31,7 +31,7 @@ jobs:
           - '5.34'
     name: Perl ${{ matrix.perl-version }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install deps using cpm
         uses: perl-actions/install-with-cpm@v1
         with:
