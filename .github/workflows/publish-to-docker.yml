@@ -15,7 +15,7 @@ jobs:
     name: "Build latest"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@3.04
         with:
@@ -34,6 +34,7 @@ jobs:
       fail-fast: false
       matrix:
         perl-version:
+          - "5.36"
           - "5.34"
           - "5.32"
           - "5.30"
@@ -50,7 +51,7 @@ jobs:
           - "5.8"
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@3.04
         with:
