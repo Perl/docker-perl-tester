@@ -10,6 +10,7 @@ requires 'Perl::Critic';
 requires 'Perl::Tidy', '>= 20220217';
 requires 'Plack::Test';
 requires 'Pod::Readme' if "$]" >= 5.012000;
+requires 'Pod::Spell', '>= 1.25';
 requires 'Software::License::Perl_5';
 requires 'Test2::Bundle::Extended';
 requires 'Test2::Plugin::NoWarnings';
