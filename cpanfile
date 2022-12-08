@@ -3,9 +3,11 @@ use warnings;    # satisfy linter
 
 if ( "$]" >= 5.010 ) {
     requires 'Pod::Man', '>= 5.00';
+    requires 'Perl::Critic', '>= 1.144';
 }
 else {
     requires 'Pod::Man', '==4.14';
+    requires 'Perl::Critic', '==1.142';
 }
 
 requires 'App::cpanoutdated';
@@ -13,7 +15,6 @@ requires 'ExtUtils::MakeMaker';
 requires 'File::Temp';
 requires 'List::MoreUtils';
 requires 'Module::Build';
-requires 'Perl::Critic';
 requires 'Perl::Tidy', '>= 20220217';
 requires 'Plack::Test';
 requires 'Pod::Readme' if "$]" >= 5.012000;
