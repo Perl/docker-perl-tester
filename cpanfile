@@ -1,6 +1,13 @@
 use strict;      # satisfy linter
 use warnings;    # satisfy linter
 
+if ( "$]" >= 5.010 ) {
+    requires 'Pod::Man', '>= 5.00';
+}
+else {
+    requires 'Pod::Man', '==4.14';
+}
+
 requires 'App::cpanoutdated';
 requires 'ExtUtils::MakeMaker';
 requires 'File::Temp';
