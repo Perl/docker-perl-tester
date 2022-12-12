@@ -1,4 +1,5 @@
 ARG BASE
+ARG CPANOUTDATED
 FROM perl:${BASE}
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -18,7 +19,7 @@ RUN cpanm -nq App::cpm Carton::Snapshot
 
 RUN cpm install -g --show-build-log-on-failure --cpanfile /tmp/cpanfile
 
-RUN cpan-outdated --exclude-core -p | xargs -n1 cpanm
+RUN if [ "x${CPANOUTDATED}" = "x1" ] ; then cpan-outdated --exclude-core -p | xargs -n1 cpanm ; else cpan-outdated --exclude-core -p; fi
 
 WORKDIR /tmp/
 RUN git clone https://github.com/perl-actions/ci-perl-tester-helpers.git --depth 1 && \
