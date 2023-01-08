@@ -52,7 +52,12 @@ if ( "$]" >= 5.010 ) {
     requires 'Devel::Cover::Report::Codecov';
     requires 'Devel::Cover::Report::Coveralls';
     requires 'Minilla';
+    requires 'Test2::Harness';
     requires 'Test::Vars';
+}
+
+if ( "$]" >= 5.010001 ) {
+    requires 'Test2::Harness::Renderer::JUnit';
 }
 
 if ( "$]" >= 5.012 ) {
