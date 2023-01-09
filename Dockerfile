@@ -24,6 +24,7 @@ RUN if [ "x${CPANOUTDATED}" = "x1" ] ; then cpan-outdated --exclude-core -p | xa
 WORKDIR /tmp/
 RUN git clone https://github.com/perl-actions/ci-perl-tester-helpers.git --depth 1 && \
     cp ci-perl-tester-helpers/bin/* /usr/local/bin/ && \
-    rm -rf ci-perl-tester-helpers
+    rm -rf ci-perl-tester-helpers && \
+    git config --global --add safe.directory '*'
 
 CMD ["/bin/bash"]
