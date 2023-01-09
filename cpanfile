@@ -1,12 +1,18 @@
 use strict;      # satisfy linter
 use warnings;    # satisfy linter
 
+# Last versions which install on < 5.12
+if ( "$]" < 5.012 ) {
+    requires 'Data::Section', '==0.200007';
+    requires 'Test::Deep',    '==1.130';
+}
+
 if ( "$]" >= 5.010 ) {
-    requires 'Pod::Man', '>= 5.00';
+    requires 'Pod::Man',     '>= 5.00';
     requires 'Perl::Critic', '>= 1.144';
 }
 else {
-    requires 'Pod::Man', '==4.14';
+    requires 'Pod::Man',     '==4.14';
     requires 'Perl::Critic', '==1.142';
 }
 
@@ -26,7 +32,6 @@ requires 'Test2::Suite';
 requires 'Test2::Tools::Explain';
 requires 'Test::Builder';
 requires 'Test::CPAN::Meta';
-requires 'Test::Deep';
 requires 'Test::Differences';
 requires 'Test::EOL';
 requires 'Test::Fatal';
