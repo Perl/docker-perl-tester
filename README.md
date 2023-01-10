@@ -17,6 +17,9 @@ on failures.
 
 # List of Perl modules
 
+See also the `cpanfile` in this repo for an up to date list of available
+modules.
+
 ## Available on all Perl Versions
 
 - Code::TidyAll::Plugin::SortLines::Naturally
@@ -130,7 +133,7 @@ jobs:
       matrix:
         perl-version:
           - '5.36'
-          - '5.34'        
+          - '5.34'
           - '5.32'
           - '5.30'
           - '5.28'
@@ -159,6 +162,12 @@ jobs:
       - name: make test
         run: make test
 ```
+
+## Using Helper scripts
+
+The scripts from [perl-actions/ci-perl-tester-helpers](https://github.com/perl-actions/ci-perl-tester-helpers) are available in the path of each container. These scripts can build and test dists for you in various scenarios. See [https://github.com/Perl-Critic/PPI/blob/master/.github/workflows/dzil-build-and-test.yml](https://github.com/Perl-Critic/PPI/blob/master/.github/workflows/dzil-build-and-test.yml) for an example of how to use the helpers to build and tests a Perl distribution.
+
+## More Examples
 
 You can find more details on how to setup GitHub workflow to smoke Perl projects by reading [skaji/perl-github-actions-sample](https://github.com/skaji/perl-github-actions-sample) GitHub repository.
 
