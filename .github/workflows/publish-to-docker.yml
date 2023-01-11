@@ -61,10 +61,3 @@ jobs:
           dockerfile: Dockerfile
           buildargs: BASE=${{ matrix.perl-version }}-buster,CPANOUTDATED=${{ matrix.perl-version != '5.8' }}
           tags: "${{ matrix.perl-version }}"
-      - name: Docker Hub Description
-        uses: peter-evans/dockerhub-description@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_GITHUB_TOKEN }}
-          repository: perldocker/perl-tester
-          short-description: ${{ github.event.repository.description }}
