@@ -34,6 +34,7 @@ jobs:
       fail-fast: false
       matrix:
         perl-version:
+          - "devel"
           - "5.36"
           - "5.34"
           - "5.32"
