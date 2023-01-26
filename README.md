@@ -79,6 +79,7 @@ The images can be found at [https://hub.docker.com/repository/docker/perldocker/
 The following tags are available from the repository `perldocker/perl-tester`
 
 ```
+devel
 5.36
 5.34
 5.32
@@ -95,6 +96,15 @@ The following tags are available from the repository `perldocker/perl-tester`
 5.10
 5.8
 ```
+
+## devel build
+
+Note that the `devel` build was added to test on the current Perl development version. (example: `5.37.8`, )
+This is tracking the last Perl `devel` version released.
+
+## OS flavor
+
+At this time all the images built are based on `buster` distro.
 
 # Continuous Integrations
 
