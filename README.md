@@ -7,7 +7,7 @@ This repo is used to build Perl Docker images with various pre-installed bits:
 - `App::cpm`
 - `Devel::Cover`
 - various testing modules
-- Dist::Zilla with some common plugins (for Perl >= 5.14)
+- Dist::Zilla with some common plugins (for Perl >= 5.20)
 
 At this points images are refreshed daily, which could change overtime if it becomes an issue.
 This should guarantee you to test uptodate CPAN stack.
@@ -67,7 +67,7 @@ modules.
 
 - Pod::Readme
 
-## Only on Perl 5.14 and later
+## Only on Perl 5.20 and later
 
 - Dist::Zilla & friends
 - Dist::Zilla::PluginBundle::Author::ETHER
