@@ -4,6 +4,7 @@ use warnings;    # satisfy linter
 # Last versions which install on < 5.12
 if ( "$]" < 5.012 ) {
     requires 'Data::Section', '==0.200007';
+    requires 'Data::OptList', '==0.113';
     requires 'Test::Deep',    '==1.130';
 }
 
@@ -77,7 +78,14 @@ if ( "$]" >= 5.020 ) {
     requires 'Dist::Zilla::PluginBundle::Author::OALDERS';
     requires 'Dist::Zilla::PluginBundle::DROLSKY';
     requires 'Dist::Zilla::PluginBundle::Milla';
-    requires 'Dist::Zilla::PluginBundle::RJBS';
+
+    if ( "$]" < 5.026 ) {
+        requires 'Dist::Zilla::PluginBundle::RJBS', '==5.023';
+    }
+    else {
+        requires 'Dist::Zilla::PluginBundle::RJBS';
+    }
+
     requires 'Dist::Zilla::Plugin::CopyFilesFromRelease';
     requires 'Dist::Zilla::Plugin::Git::Contributors';
     requires 'Dist::Zilla::Plugin::OurPkgVersion';
