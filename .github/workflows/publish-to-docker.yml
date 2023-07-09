@@ -35,6 +35,7 @@ jobs:
       matrix:
         perl-version:
           - "devel"
+          - "5.38"
           - "5.36"
           - "5.34"
           - "5.32"
