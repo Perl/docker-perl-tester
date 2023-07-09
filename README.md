@@ -80,6 +80,7 @@ The following tags are available from the repository `perldocker/perl-tester`
 
 ```
 devel
+5.38
 5.36
 5.34
 5.32
@@ -110,7 +111,7 @@ At this time all the images built are based on `buster` distro.
 
 ## Using the images with GitHub Workflow
 
-Here is a sample workflow for Linux running on all Perl version 5.8 to 5.36
+Here is a sample workflow for Linux running on all Perl version 5.8 to 5.38
 You can save the content in `.github/workflow/linux.yml`.
 
 Note: this example is using cpm to install the dependencies from a cpanfile.
@@ -142,6 +143,7 @@ jobs:
       fail-fast: false
       matrix:
         perl-version:
+          - '5.38'
           - '5.36'
           - '5.34'
           - '5.32'
