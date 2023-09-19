@@ -90,9 +90,14 @@ if ( "$]" >= 5.020 ) {
         requires 'Dist::Zilla::PluginBundle::RJBS';
     }
 
+    requires 'Dist::Zilla::PluginBundle::Starter::Git';
+    requires 'Dist::Zilla::Plugin::CheckChangeLog';
     requires 'Dist::Zilla::Plugin::CopyFilesFromRelease';
+    requires 'Dist::Zilla::Plugin::Deprecated';
     requires 'Dist::Zilla::Plugin::Git::Contributors';
+    requires 'Dist::Zilla::Plugin::GitHubREADME::Badge';
     requires 'Dist::Zilla::Plugin::OurPkgVersion';
+    requires 'Dist::Zilla::Plugin::Regenerate::AfterReleasers';
     requires 'Dist::Zilla::Plugin::StaticInstall';
     requires 'Dist::Zilla::Plugin::Test::ReportPrereqs';
 
