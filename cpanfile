@@ -73,6 +73,10 @@ if ( "$]" >= 5.012 ) {
     requires 'Pod::Coverage::TrustPod';
 }
 
+if ( "$]" < 5.014 ) {
+    requires 'IO::Socket::IP', '==0.41';
+}
+
 if ( "$]" >= 5.020 ) {
     requires 'Dist::Zilla::PluginBundle::Author::ETHER';
     requires 'Dist::Zilla::PluginBundle::Author::OALDERS';
