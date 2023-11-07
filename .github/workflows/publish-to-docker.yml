@@ -10,6 +10,18 @@ on:
   workflow_dispatch:
 
 jobs:
+  prepare-matrix:
+    runs-on: ubuntu-latest
+    name: List perl versions
+    outputs:
+      perl-versions: ${{ steps.action.outputs.perl-versions }}
+    steps:
+      - name: Perl versions action step
+        id: action
+        uses: perl-actions/perl-versions@main
+        with:
+          since-perl: '5.8'
+          with-devel: 'true'
 
   latest-build:
     name: "Build latest"
@@ -29,28 +41,13 @@ jobs:
   build:
     name: "Build versions"
     runs-on: ubuntu-latest
+    needs:
+      - prepare-matrix
 
     strategy:
       fail-fast: false
       matrix:
-        perl-version:
-          - "devel"
-          - "5.38"
-          - "5.36"
-          - "5.34"
-          - "5.32"
-          - "5.30"
-          - "5.28"
-          - "5.26"
-          - "5.24"
-          - "5.22"
-          - "5.20"
-          - "5.18"
-          - "5.16"
-          - "5.14"
-          - "5.12"
-          - "5.10"
-          - "5.8"
+        perl-version: ${{ fromJson (needs.prepare-matrix.outputs.perl-versions) }}
 
     steps:
       - uses: actions/checkout@v4
