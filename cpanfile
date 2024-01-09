@@ -5,12 +5,14 @@ use warnings;    # satisfy linter
 if ( "$]" < 5.012 ) {
     requires 'Data::Section', '==0.200007';
     requires 'Data::OptList', '==0.113';
+    requires 'Plack', '==1.0050';
     requires 'Software::License::Perl_5', '==0.104004';
     requires 'Sub::Exporter', '==0.990';
     requires 'Test::Deep',    '==1.130';
 }
 else {
     requires 'Software::License::Perl_5';
+    requires 'Plack::Test';
 }
 
 if ( "$]" >= 5.010 ) {
@@ -28,7 +30,6 @@ requires 'File::Temp';
 requires 'List::MoreUtils';
 requires 'Module::Build';
 requires 'Perl::Tidy', '>= 20220217';
-requires 'Plack::Test';
 requires 'Pod::Readme' if "$]" >= 5.012000;
 requires 'Pod::Spell', '>= 1.25';
 requires 'Test2::Bundle::Extended';
