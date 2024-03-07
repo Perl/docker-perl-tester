@@ -37,6 +37,13 @@ jobs:
           dockerfile: Dockerfile
           buildargs: BASE=buster
           tags: "latest,buster"
+      - name: Update Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
+          repository: ${{ secrets.DOCKER_REPO }}
+          short-description: ${{ github.event.repository.description }}
 
   build:
     name: "Build versions"
