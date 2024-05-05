@@ -77,7 +77,7 @@ jobs:
           password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
           dockerfile: Dockerfile
           buildargs: BASE=${{ matrix.perl-version }}-buster,CPANOUTDATED=${{ matrix.perl-version != '5.8' }}
-          tags: "${{ matrix.perl-version }}-buster,${{ matrix-perl-version }}"
+          tags: "${{ matrix.perl-version }}-buster,${{ matrix.perl-version }}"
 
   build-bookworm:
     name: "Build versions for bookworm"
