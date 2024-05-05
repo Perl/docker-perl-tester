@@ -26,6 +26,11 @@ jobs:
   latest-build:
     name: "Build latest"
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        debian-version: [buster,bookworm]
+
     steps:
       - uses: actions/checkout@v4
       - name: Publish to Registry
@@ -36,7 +41,7 @@ jobs:
           password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
           dockerfile: Dockerfile
           buildargs: BASE=buster
-          tags: "latest,buster"
+          tags: "latest,${{ matrix.debian-version }}"
 
   build:
     name: "Build versions"
@@ -48,6 +53,7 @@ jobs:
       fail-fast: false
       matrix:
         perl-version: ${{ fromJson (needs.prepare-matrix.outputs.perl-versions) }}
+        debian-version: [buster,bookworm]
 
     steps:
       - uses: actions/checkout@v4
@@ -58,5 +64,5 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
           dockerfile: Dockerfile
-          buildargs: BASE=${{ matrix.perl-version }}-buster,CPANOUTDATED=${{ matrix.perl-version != '5.8' }}
-          tags: "${{ matrix.perl-version }}"
+          buildargs: BASE=${{ matrix.perl-version }}-${{ matrix.debian-version }},CPANOUTDATED=${{ matrix.perl-version != '5.8' }}
+          tags: "${{ matrix.perl-version }}-${{ matrix.debian-version }}${{ matrix.debian-version=='buster' && format(',{0}',matrix.perl-version) || '' }}"

@@ -105,7 +105,8 @@ This is tracking the last Perl `devel` version released.
 
 ## OS flavor
 
-At this time all the images built are based on `buster` distro.
+Images are built for both Debian `buster` and Debian `bookworm`.  The
+versions without an explicit Debian version are `buster`.
 
 # Continuous Integrations
 
