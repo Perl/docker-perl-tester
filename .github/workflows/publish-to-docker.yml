@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  prepare-matrix:
+  prepare-matrix-buster:
     runs-on: ubuntu-latest
     name: List perl versions
     outputs:
@@ -21,6 +21,20 @@ jobs:
         uses: perl-actions/perl-versions@main
         with:
           since-perl: '5.8'
+          with-devel: 'true'
+
+  # bookworm base images only exist for 5.36 and newer.
+  prepare-matrix-bookworm:
+    runs-on: ubuntu-latest
+    name: List perl versions
+    outputs:
+      perl-versions: ${{ steps.action.outputs.perl-versions }}
+    steps:
+      - name: Perl versions action step
+        id: action
+        uses: perl-actions/perl-versions@main
+        with:
+          since-perl: '5.36'
           with-devel: 'true'
 
   latest-build:
@@ -43,18 +57,16 @@ jobs:
           buildargs: BASE=buster
           tags: "latest,${{ matrix.debian-version }}"
 
-  build:
-    name: "Build versions"
+  build-buster:
+    name: "Build versions for buster"
     runs-on: ubuntu-latest
     needs:
-      - prepare-matrix
+      - prepare-matrix-buster
 
     strategy:
       fail-fast: false
       matrix:
-        perl-version: ${{ fromJson (needs.prepare-matrix.outputs.perl-versions) }}
-        debian-version: [buster,bookworm]
-
+        perl-version: ${{ fromJson (needs.prepare-matrix-buster.outputs.perl-versions) }}
     steps:
       - uses: actions/checkout@v4
       - name: Publish to Registry
@@ -64,5 +76,27 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
           dockerfile: Dockerfile
-          buildargs: BASE=${{ matrix.perl-version }}-${{ matrix.debian-version }},CPANOUTDATED=${{ matrix.perl-version != '5.8' }}
-          tags: "${{ matrix.perl-version }}-${{ matrix.debian-version }}${{ matrix.debian-version=='buster' && format(',{0}',matrix.perl-version) || '' }}"
+          buildargs: BASE=${{ matrix.perl-version }}-buster,CPANOUTDATED=${{ matrix.perl-version != '5.8' }}
+          tags: "${{ matrix.perl-version }}-buster,${{ matrix-perl-version }}"
+
+  build-bookworm:
+    name: "Build versions for bookworm"
+    runs-on: ubuntu-latest
+    needs:
+      - prepare-matrix-bookworm
+
+    strategy:
+      fail-fast: false
+      matrix:
+        perl-version: ${{ fromJson (needs.prepare-matrix-bookworm.outputs.perl-versions) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@v5
+        with:
+          name: ${{ secrets.DOCKER_REPO }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
+          dockerfile: Dockerfile
+          buildargs: BASE=${{ matrix.perl-version }}-bookworm,CPANOUTDATED=${{ matrix.perl-version != '5.8' }}
+          tags: "${{ matrix.perl-version }}-bookworm"
