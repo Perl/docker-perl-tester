@@ -98,5 +98,5 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
           dockerfile: Dockerfile
-          buildargs: BASE=${{ matrix.perl-version }}-bookworm,CPANOUTDATED=1
-          tags: "${{ matrix.perl-version }}-bookworm"
+          buildargs: BASE=${{ matrix.perl-version }}-slim-bookworm,CPANOUTDATED=1
+          tags: "${{ matrix.perl-version }}-slim-bookworm"
