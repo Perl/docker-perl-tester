@@ -17,7 +17,7 @@ jobs:
         id: action
         uses: perl-actions/perl-versions@main
         with:
-          since-perl: '5.8'
+          since-perl: '5.10'
           with-devel: 'true'
 
   test-job:
