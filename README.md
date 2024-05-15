@@ -95,7 +95,6 @@ devel
 5.14
 5.12
 5.10
-5.8
 ```
 
 ## devel build
@@ -112,7 +111,7 @@ versions without an explicit Debian version are `buster`.
 
 ## Using the images with GitHub Workflow
 
-Here is a sample workflow for Linux running on all Perl version 5.8 to 5.38
+Here is a sample workflow for Linux running on all Perl version 5.10 to 5.38
 You can save the content in `.github/workflow/linux.yml`.
 
 Note: this example is using cpm to install the dependencies from a cpanfile.
@@ -159,7 +158,6 @@ jobs:
           - '5.14'
           - '5.12'
           - '5.10'
-          - '5.8'
 
     container:
       image: perldocker/perl-tester:${{ matrix.perl-version }}
