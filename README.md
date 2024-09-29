@@ -4,6 +4,8 @@ This repo is used to build Perl Docker images with various pre-installed bits:
 The earliest supported version is Perl 5.10.
 
 - the `aspell` and `aspell-en` packages
+- `build-essential`
+- `git`
 - `cpanminus`
 - `App::cpm`
 - `Devel::Cover`
@@ -21,25 +23,32 @@ on failures.
 See also the `cpanfile` in this repo for an up to date list of available
 modules.
 
+Note that on older versions of Perl older Perl modules might be required. Examples for
+such cases are Perl::Critic, Pod::Man, and Software::License::Perl_5.
+
 ## Available on all Perl Versions
 
-- Code::TidyAll::Plugin::SortLines::Naturally
-- Code::TidyAll::Plugin::UniqueLines
+- App::cpanoutdated
 - Devel::Cover
 - Devel::Cover::Report::Codecov
 - Devel::Cover::Report::Coveralls
 - ExtUtils::MakeMaker
 - File::Temp
 - List::MoreUtils
+- Minilla
 - Module::Build
-- Pod::Coverage::TrustPod
+- Perl::Critic
+- Perl::Tidy
+- Pod::Man
+- Pod::Spell
+- Software::License::Perl_5
 - Test2::Bundle::Extended
+- Test2::Harness
 - Test2::Plugin::NoWarnings
 - Test2::Suite
 - Test2::Tools::Explain
 - Test::Builder
 - Test::CPAN::Meta
-- Test::Deep
 - Test::Differences
 - Test::EOL
 - Test::Fatal
@@ -49,6 +58,7 @@ modules.
 - Test::More
 - Test::Needs
 - Test::Notabs
+- Test::Perl::Critic
 - Test::Pod
 - Test::Pod::Coverage
 - Test::Portability::Files
@@ -56,22 +66,53 @@ modules.
 - Test::Simple
 - Test::Spelling
 - Test::Synopsis
+- Test::Vars
 - Test::Version
 - Test::Warnings
 
-## Only on Perl 5.10 and later
+## Only on Perl 5.10
 
-- Code::TidyAll::Plugin::Test::Vars
-- Test::Vars
+- Data::OptList
+- Data::Section
+- Plack
+- Sub::Exporter
+- Test::Deep
+
+## Only on Perl 5.10.001 and later
+
+- Test2::Harness::Renderer::JUnit
 
 ## Only on Perl 5.12 and later
 
+- Code::TidyAll::Plugin::SortLines::Naturally
+- Code::TidyAll::Plugin::Test::Vars
+- Code::TidyAll::Plugin::UniqueLines
+- Plack::Test (usually as part of the distribution Plack)
+- Pod::Coverage::TrustPod
 - Pod::Readme
+
+## Only on Perl 5.10 and Perl 5.12
+
+- IO::Socket::IP (this might be an implicit dependendcy on other versions of Perl)
 
 ## Only on Perl 5.20 and later
 
 - Dist::Zilla & friends
 - Dist::Zilla::PluginBundle::Author::ETHER
+- Dist::Zilla::PluginBundle::Author::OALDERS
+- Dist::Zilla::PluginBundle::DROLSKY
+- Dist::Zilla::PluginBundle::Milla
+- Dist::Zilla::PluginBundle::RJBS
+- Dist::Zilla::PluginBundle::Starter::Git
+- Dist::Zilla::Plugin::CheckChangeLog
+- Dist::Zilla::Plugin::CopyFilesFromRelease
+- Dist::Zilla::Plugin::Deprecated
+- Dist::Zilla::Plugin::Git::Contributors
+- Dist::Zilla::Plugin::GitHubREADME::Badge
+- Dist::Zilla::Plugin::OurPkgVersion
+- Dist::Zilla::Plugin::Regenerate::AfterReleasers
+- Dist::Zilla::Plugin::StaticInstall
+- Dist::Zilla::Plugin::Test::ReportPrereqs
 
 # Using Docker Images for your projects
 
