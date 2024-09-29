@@ -1,6 +1,7 @@
 # docker-perl-tester
 
 This repo is used to build Perl Docker images with various pre-installed bits:
+The earliest supported version is Perl 5.10.
 
 - the `aspell` and `aspell-en` packages
 - `cpanminus`
