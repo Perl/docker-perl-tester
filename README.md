@@ -80,6 +80,7 @@ The following tags are available from the repository `perldocker/perl-tester`
 
 ```
 devel
+5.40
 5.38
 5.36
 5.34
@@ -111,7 +112,7 @@ versions without an explicit Debian version are `buster`.
 
 ## Using the images with GitHub Workflow
 
-Here is a sample workflow for Linux running on all Perl version 5.10 to 5.38
+Here is a sample workflow for Linux running on all Perl version 5.10 to 5.40
 You can save the content in `.github/workflow/linux.yml`.
 
 Note: this example is using cpm to install the dependencies from a cpanfile.
@@ -143,6 +144,7 @@ jobs:
       fail-fast: false
       matrix:
         perl-version:
+          - '5.40'
           - '5.38'
           - '5.36'
           - '5.34'
