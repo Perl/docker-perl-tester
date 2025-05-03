@@ -1,6 +1,38 @@
 use strict;      # satisfy linter
 use warnings;    # satisfy linter
 
+=pod
+
+Semantic sugar to simplify management of modules which changed their required Perl version
+(directly or via dependencies)
+
+    requires_by_perl Module,
+        prior     5.010 => 'use version X',
+        prior     5.012 => 'use version Y',
+        otherwise do_not_install
+        ;
+
+=cut
+
+sub requires_by_perl {
+	my @requires = (shift);
+
+	while (@_) {
+		shift, next
+			unless @_ == 1 || $] < shift
+			;
+
+		push @requires, shift // return;
+		last;
+	}
+
+	requires @requires;
+}
+
+sub prior { @_ }
+sub otherwise { @_ }
+sub do_not_install { undef }
+
 # Last versions which install on < 5.12
 if ( "$]" < 5.012 ) {
     requires 'Data::Section', '==0.200007';
