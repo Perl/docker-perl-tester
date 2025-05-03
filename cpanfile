@@ -91,8 +91,12 @@ if ( "$]" >= 5.020 ) {
     if ( "$]" < 5.026 ) {
         requires 'Dist::Zilla::PluginBundle::RJBS', '==5.023';
     }
+    elsif ( "$]" < 5.034 ) {
+        requires 'Dist::Zilla::PluginBundle::RJBS', '==5.025';
+    }
     else {
-        requires 'Dist::Zilla::PluginBundle::RJBS';
+		# 5.028 requires v5.36 whereas newer versions only v5.34
+        requires 'Dist::Zilla::PluginBundle::RJBS', '>5.028';
     }
 
     requires 'Dist::Zilla::PluginBundle::Starter::Git';
