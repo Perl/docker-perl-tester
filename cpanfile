@@ -77,7 +77,6 @@ requires 'Test::Differences';
 requires 'Test::EOL';
 requires 'Test::Fatal';
 requires 'Test::MinimumVersion';
-requires 'Test::MockModule';
 requires 'Test::Mojibake';
 requires 'Test::More';
 requires 'Test::Needs';
@@ -96,6 +95,10 @@ requires 'Test::Warnings';
 requires_by_perl 'Devel::Cover',
 	prior 5.010 => do_not_install,
 	prior 5.012 => '==1.42',
+	;
+
+requires_by_perl 'Test::MockModule',
+	prior 5.012 => '==0.178',
 	;
 
 requires_by_perl 'Test2::Harness',
