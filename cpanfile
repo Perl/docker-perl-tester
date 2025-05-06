@@ -120,16 +120,12 @@ if ( "$]" >= 5.020 ) {
     requires 'Dist::Zilla::PluginBundle::DROLSKY';
     requires 'Dist::Zilla::PluginBundle::Milla';
 
-    if ( "$]" < 5.026 ) {
-        requires 'Dist::Zilla::PluginBundle::RJBS', '==5.023';
-    }
-    elsif ( "$]" < 5.034 ) {
-        requires 'Dist::Zilla::PluginBundle::RJBS', '==5.025';
-    }
-    else {
-		# 5.028 requires v5.36 whereas newer versions only v5.34
-        requires 'Dist::Zilla::PluginBundle::RJBS', '>5.028';
-    }
+	requires_by_perl 'Dist::Zilla::PluginBundle::RJBS',
+		prior 5.020 => do_not_install,
+		prior 5.026 => '==5.023',
+		prior 5.034 => '==5.025',
+        otherwise      '>5.028' # 5.028 requires v5.36 whereas following versions only v5.34, so omit it
+		;
 
     requires 'Dist::Zilla::PluginBundle::Starter::Git';
     requires 'Dist::Zilla::Plugin::CheckChangeLog';
