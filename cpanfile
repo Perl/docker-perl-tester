@@ -33,6 +33,11 @@ sub prior { @_ }
 sub otherwise { @_ }
 sub do_not_install { undef }
 
+requires_by_perl 'Pod::Man',
+	prior 5.010 => '==4.14',
+	prior 5.012 => '==5.01',
+	;
+
 # Last versions which install on < 5.12
 if ( "$]" < 5.012 ) {
     requires 'Data::Section', '==0.200007';
@@ -48,11 +53,9 @@ else {
 }
 
 if ( "$]" >= 5.010 ) {
-    requires 'Pod::Man',     '>= 5.00';
     requires 'Perl::Critic', '>= 1.144';
 }
 else {
-    requires 'Pod::Man',     '==4.14';
     requires 'Perl::Critic', '==1.142';
 }
 
