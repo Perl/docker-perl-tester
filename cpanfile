@@ -3,14 +3,49 @@ use warnings;    # satisfy linter
 
 =pod
 
-Semantic sugar to simplify management of modules which changed their required Perl version
-(directly or via dependencies)
+=head1 requires_by_perl
 
-    requires_by_perl Module,
+Semantic helper to simplify management of modules which have changed
+their required Perl version (directly or via dependencies)
+
+    requires_by_perl 'Module',
         prior     5.010 => 'use version X',
         prior     5.012 => 'use version Y',
         otherwise skip
         ;
+
+=head1 prior
+
+    prior VERSION => VERSION_SPEC, ...
+
+    requires_by_perl 'Module',
+        prior 5.010 => skip,
+        ;
+
+Semantic helper function to give data meaning,
+which version of a module should be installed for a Perl version
+prior to specified version.
+
+=head1 otherwise
+
+    otherwise VERSION_SPEC
+
+    requires_by_perl 'Module',
+        prior 5.010 => skip,
+        otherwise '5.0',
+        ;
+
+Semantic sugar function to give data meaning,
+which version of a module to install when none of the previous
+L</prior> expressions match.
+
+=head1 skip
+
+    prior 5.010 => skip,
+    otherwise skip,
+
+Semantic helper function representing L<VERSION_SPEC> with the meaning:
+do not install explicitly.
 
 =cut
 
