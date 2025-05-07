@@ -65,7 +65,6 @@ requires 'File::Temp';
 requires 'List::MoreUtils';
 requires 'Module::Build';
 requires 'Perl::Tidy', '>= 20220217';
-requires 'Pod::Readme' if "$]" >= 5.012000;
 requires 'Pod::Spell', '>= 1.25';
 requires 'Test2::Bundle::Extended';
 requires 'Test2::Plugin::NoWarnings';
@@ -123,6 +122,7 @@ if ( "$]" >= 5.012 ) {
     requires 'Code::TidyAll::Plugin::Test::Vars';
     requires 'Code::TidyAll::Plugin::UniqueLines';
     requires 'Pod::Coverage::TrustPod';
+    requires 'Pod::Readme';
 }
 
 if ( "$]" < 5.014 ) {
