@@ -9,7 +9,7 @@ Semantic sugar to simplify management of modules which changed their required Pe
     requires_by_perl Module,
         prior     5.010 => 'use version X',
         prior     5.012 => 'use version Y',
-        otherwise do_not_install
+        otherwise skip
         ;
 
 =cut
@@ -31,7 +31,7 @@ sub requires_by_perl {
 
 sub prior { @_ }
 sub otherwise { @_ }
-sub do_not_install { undef }
+sub skip { undef }
 
 requires_by_perl 'Pod::Man',
 	prior 5.010 => '==4.14',
@@ -93,7 +93,7 @@ requires 'Test::Version';
 requires 'Test::Warnings';
 
 requires_by_perl 'Devel::Cover',
-	prior 5.010 => do_not_install,
+	prior 5.010 => skip,
 	prior 5.012 => '==1.42',
 	;
 
@@ -102,12 +102,12 @@ requires_by_perl 'Test::MockModule',
 	;
 
 requires_by_perl 'Test2::Harness',
-	prior 5.010 => do_not_install,
+	prior 5.010 => skip,
 	prior 5.014 => '==1.000156',
 	;
 
 requires_by_perl 'Test2::Harness::Renderer::JUnit',
-	prior 5.010001 => do_not_install,
+	prior 5.010001 => skip,
 	prior 5.014    => '==1.000005',
 	;
 
@@ -136,7 +136,7 @@ if ( "$]" >= 5.020 ) {
     requires 'Dist::Zilla::PluginBundle::Milla';
 
 	requires_by_perl 'Dist::Zilla::PluginBundle::RJBS',
-		prior 5.020 => do_not_install,
+		prior 5.020 => skip,
 		prior 5.026 => '==5.023',
 		prior 5.034 => '==5.025',
         otherwise      '>5.028' # 5.028 requires v5.36 whereas following versions only v5.34, so omit it
