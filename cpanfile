@@ -1,6 +1,43 @@
 use strict;      # satisfy linter
 use warnings;    # satisfy linter
 
+=pod
+
+Semantic sugar to simplify management of modules which changed their required Perl version
+(directly or via dependencies)
+
+    requires_by_perl Module,
+        prior     5.010 => 'use version X',
+        prior     5.012 => 'use version Y',
+        otherwise do_not_install
+        ;
+
+=cut
+
+sub requires_by_perl {
+	my @requires = (shift);
+
+	while (@_) {
+		shift, next
+			unless @_ == 1 || $] < shift
+			;
+
+		push @requires, shift // return;
+		last;
+	}
+
+	requires @requires;
+}
+
+sub prior { @_ }
+sub otherwise { @_ }
+sub do_not_install { undef }
+
+requires_by_perl 'Pod::Man',
+	prior 5.010 => '==4.14',
+	prior 5.012 => '==5.01',
+	;
+
 # Last versions which install on < 5.12
 if ( "$]" < 5.012 ) {
     requires 'Data::Section', '==0.200007';
@@ -16,11 +53,9 @@ else {
 }
 
 if ( "$]" >= 5.010 ) {
-    requires 'Pod::Man',     '>= 5.00';
     requires 'Perl::Critic', '>= 1.144';
 }
 else {
-    requires 'Pod::Man',     '==4.14';
     requires 'Perl::Critic', '==1.142';
 }
 
@@ -42,7 +77,6 @@ requires 'Test::Differences';
 requires 'Test::EOL';
 requires 'Test::Fatal';
 requires 'Test::MinimumVersion';
-requires 'Test::MockModule';
 requires 'Test::Mojibake';
 requires 'Test::More';
 requires 'Test::Needs';
@@ -58,17 +92,30 @@ requires 'Test::Synopsis';
 requires 'Test::Version';
 requires 'Test::Warnings';
 
+requires_by_perl 'Devel::Cover',
+	prior 5.010 => do_not_install,
+	prior 5.012 => '==1.42',
+	;
+
+requires_by_perl 'Test::MockModule',
+	prior 5.012 => '==0.178',
+	;
+
+requires_by_perl 'Test2::Harness',
+	prior 5.010 => do_not_install,
+	prior 5.014 => '==1.000156',
+	;
+
+requires_by_perl 'Test2::Harness::Renderer::JUnit',
+	prior 5.010001 => do_not_install,
+	prior 5.014    => '==1.000005',
+	;
+
 if ( "$]" >= 5.010 ) {
-    requires 'Devel::Cover';
     requires 'Devel::Cover::Report::Codecov';
     requires 'Devel::Cover::Report::Coveralls';
     requires 'Minilla';
-    requires 'Test2::Harness';
     requires 'Test::Vars';
-}
-
-if ( "$]" >= 5.010001 ) {
-    requires 'Test2::Harness::Renderer::JUnit';
 }
 
 if ( "$]" >= 5.012 ) {
@@ -88,12 +135,12 @@ if ( "$]" >= 5.020 ) {
     requires 'Dist::Zilla::PluginBundle::DROLSKY';
     requires 'Dist::Zilla::PluginBundle::Milla';
 
-    if ( "$]" < 5.026 ) {
-        requires 'Dist::Zilla::PluginBundle::RJBS', '==5.023';
-    }
-    else {
-        requires 'Dist::Zilla::PluginBundle::RJBS';
-    }
+	requires_by_perl 'Dist::Zilla::PluginBundle::RJBS',
+		prior 5.020 => do_not_install,
+		prior 5.026 => '==5.023',
+		prior 5.034 => '==5.025',
+        otherwise      '>5.028' # 5.028 requires v5.36 whereas following versions only v5.34, so omit it
+		;
 
     requires 'Dist::Zilla::PluginBundle::Starter::Git';
     requires 'Dist::Zilla::Plugin::CheckChangeLog';
