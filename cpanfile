@@ -95,6 +95,10 @@ requires_by_perl 'Plack',
 	otherwise skip
 	;
 
+requires_by_perl 'Plack::Test',
+	prior 5.012 => skip
+	;
+
 requires_by_perl 'Pod::Man',
 	prior 5.010 => '==4.14',
 	prior 5.012 => '==5.01',
@@ -127,13 +131,6 @@ requires_by_perl 'Test::Deep',
 requires_by_perl 'Test::MockModule',
 	prior 5.012 => '==0.178',
 	;
-
-# Last versions which install on < 5.12
-if ( "$]" < 5.012 ) {
-}
-else {
-    requires 'Plack::Test';
-}
 
 if ( "$]" >= 5.010 ) {
     requires 'Perl::Critic', '>= 1.144';
