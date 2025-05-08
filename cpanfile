@@ -128,6 +128,10 @@ requires_by_perl 'Plack::Test',
 	prior 5.012 => skip
 	;
 
+requires_by_perl 'Pod::Coverage::TrustPod',
+	prior 5.014 => skip,
+	;
+
 requires_by_perl 'Pod::Man',
 	prior 5.010 => '==4.14',
 	prior 5.012 => '==5.01',
@@ -200,10 +204,6 @@ requires 'Test::Spelling';
 requires 'Test::Synopsis';
 requires 'Test::Version';
 requires 'Test::Warnings';
-
-if ( "$]" >= 5.012 ) {
-    requires 'Pod::Coverage::TrustPod';
-}
 
 if ( "$]" < 5.014 ) {
     requires 'IO::Socket::IP', '==0.41';
