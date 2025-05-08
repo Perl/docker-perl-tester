@@ -153,6 +153,10 @@ requires_by_perl 'Test::MockModule',
 	prior 5.012 => '==0.178',
 	;
 
+requires_by_perl 'Test::Vars',
+	prior 5.010 => skip,
+	;
+
 requires 'App::cpanoutdated';
 requires 'ExtUtils::MakeMaker';
 requires 'File::Temp';
@@ -184,10 +188,6 @@ requires 'Test::Spelling';
 requires 'Test::Synopsis';
 requires 'Test::Version';
 requires 'Test::Warnings';
-
-if ( "$]" >= 5.010 ) {
-    requires 'Test::Vars';
-}
 
 if ( "$]" >= 5.012 ) {
     requires 'Code::TidyAll::Plugin::SortLines::Naturally';
