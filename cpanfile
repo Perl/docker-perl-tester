@@ -83,6 +83,10 @@ requires_by_perl 'Devel::Cover',
 	prior 5.012 => '==1.42',
 	;
 
+requires_by_perl 'Devel::Cover::Report::Codecov',
+	prior 5.010 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::PluginBundle::RJBS',
 	prior 5.020 => skip,
 	prior 5.026 => '==5.023',
@@ -174,7 +178,6 @@ requires 'Test::Version';
 requires 'Test::Warnings';
 
 if ( "$]" >= 5.010 ) {
-    requires 'Devel::Cover::Report::Codecov';
     requires 'Devel::Cover::Report::Coveralls';
     requires 'Minilla';
     requires 'Test::Vars';
