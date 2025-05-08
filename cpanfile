@@ -68,9 +68,35 @@ sub prior { @_ }
 sub otherwise { @_ }
 sub skip { undef }
 
+requires_by_perl 'Devel::Cover',
+	prior 5.010 => skip,
+	prior 5.012 => '==1.42',
+	;
+
+requires_by_perl 'Dist::Zilla::PluginBundle::RJBS',
+	prior 5.020 => skip,
+	prior 5.026 => '==5.023',
+	prior 5.034 => '==5.025',
+	otherwise	   '>5.028' # 5.028 requires v5.36 whereas following versions only v5.34, so omit it
+	;
+
 requires_by_perl 'Pod::Man',
 	prior 5.010 => '==4.14',
 	prior 5.012 => '==5.01',
+	;
+
+requires_by_perl 'Test2::Harness',
+	prior 5.010 => skip,
+	prior 5.014 => '==1.000156',
+	;
+
+requires_by_perl 'Test2::Harness::Renderer::JUnit',
+	prior 5.010001 => skip,
+	prior 5.014	   => '==1.000005',
+	;
+
+requires_by_perl 'Test::MockModule',
+	prior 5.012 => '==0.178',
 	;
 
 # Last versions which install on < 5.12
@@ -127,25 +153,6 @@ requires 'Test::Synopsis';
 requires 'Test::Version';
 requires 'Test::Warnings';
 
-requires_by_perl 'Devel::Cover',
-	prior 5.010 => skip,
-	prior 5.012 => '==1.42',
-	;
-
-requires_by_perl 'Test::MockModule',
-	prior 5.012 => '==0.178',
-	;
-
-requires_by_perl 'Test2::Harness',
-	prior 5.010 => skip,
-	prior 5.014 => '==1.000156',
-	;
-
-requires_by_perl 'Test2::Harness::Renderer::JUnit',
-	prior 5.010001 => skip,
-	prior 5.014    => '==1.000005',
-	;
-
 if ( "$]" >= 5.010 ) {
     requires 'Devel::Cover::Report::Codecov';
     requires 'Devel::Cover::Report::Coveralls';
@@ -169,13 +176,6 @@ if ( "$]" >= 5.020 ) {
     requires 'Dist::Zilla::PluginBundle::Author::OALDERS';
     requires 'Dist::Zilla::PluginBundle::DROLSKY';
     requires 'Dist::Zilla::PluginBundle::Milla';
-
-	requires_by_perl 'Dist::Zilla::PluginBundle::RJBS',
-		prior 5.020 => skip,
-		prior 5.026 => '==5.023',
-		prior 5.034 => '==5.025',
-        otherwise      '>5.028' # 5.028 requires v5.36 whereas following versions only v5.34, so omit it
-		;
 
     requires 'Dist::Zilla::PluginBundle::Starter::Git';
     requires 'Dist::Zilla::Plugin::CheckChangeLog';
