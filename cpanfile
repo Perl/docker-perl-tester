@@ -109,6 +109,10 @@ requires_by_perl 'Pod::Man',
 	prior 5.012 => '==5.01',
 	;
 
+requires_by_perl 'Pod::Readme',
+	prior 5.012 => skip,
+	;
+
 requires_by_perl 'Software::License::Perl_5',
 	prior 5.012 => '==0.104004',
 	;
@@ -143,7 +147,6 @@ requires 'File::Temp';
 requires 'List::MoreUtils';
 requires 'Module::Build';
 requires 'Perl::Tidy', '>= 20220217';
-requires 'Pod::Readme' if "$]" >= 5.012000;
 requires 'Pod::Spell', '>= 1.25';
 requires 'Test2::Bundle::Extended';
 requires 'Test2::Plugin::NoWarnings';
