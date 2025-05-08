@@ -103,6 +103,42 @@ requires_by_perl 'Devel::Cover::Report::Coveralls',
 	prior 5.010 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::CheckChangeLog',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::CopyFilesFromRelease',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::Deprecated',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::Git::Contributors',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::GitHubREADME::Badge',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::OurPkgVersion',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::Regenerate::AfterReleasers',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::StaticInstall',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::Test::ReportPrereqs',
+	prior 5.020 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::PluginBundle::Author::ETHER',
 	prior 5.020 => skip,
 	;
@@ -229,17 +265,3 @@ requires 'Test::Synopsis';
 requires 'Test::Version';
 requires 'Test::Warnings';
 
-if ( "$]" >= 5.020 ) {
-
-    requires 'Dist::Zilla::Plugin::CheckChangeLog';
-    requires 'Dist::Zilla::Plugin::CopyFilesFromRelease';
-    requires 'Dist::Zilla::Plugin::Deprecated';
-    requires 'Dist::Zilla::Plugin::Git::Contributors';
-    requires 'Dist::Zilla::Plugin::GitHubREADME::Badge';
-    requires 'Dist::Zilla::Plugin::OurPkgVersion';
-    requires 'Dist::Zilla::Plugin::Regenerate::AfterReleasers';
-    requires 'Dist::Zilla::Plugin::StaticInstall';
-    requires 'Dist::Zilla::Plugin::Test::ReportPrereqs';
-
-    # ...
-}
