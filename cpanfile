@@ -90,6 +90,11 @@ requires_by_perl 'Dist::Zilla::PluginBundle::RJBS',
 	otherwise	   '>5.028' # 5.028 requires v5.36 whereas following versions only v5.34, so omit it
 	;
 
+requires_by_perl 'Plack',
+	prior 5.012 => '==1.0050',
+	otherwise skip
+	;
+
 requires_by_perl 'Pod::Man',
 	prior 5.010 => '==4.14',
 	prior 5.012 => '==5.01',
@@ -111,7 +116,6 @@ requires_by_perl 'Test::MockModule',
 
 # Last versions which install on < 5.12
 if ( "$]" < 5.012 ) {
-    requires 'Plack', '==1.0050';
     requires 'Software::License::Perl_5', '==0.104004';
     requires 'Sub::Exporter', '==0.990';
     requires 'Test::Deep',    '==1.130';
