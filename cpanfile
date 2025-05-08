@@ -68,6 +68,9 @@ sub prior { @_ }
 sub otherwise { @_ }
 sub skip { undef }
 
+requires_by_perl 'App::cpanoutdated',
+	;
+
 requires_by_perl 'Code::TidyAll::Plugin::SortLines::Naturally',
 	prior 5.012 => skip
 	;
@@ -166,17 +169,32 @@ requires_by_perl 'Dist::Zilla::PluginBundle::Starter::Git',
 	prior 5.020 => skip,
 	;
 
+requires_by_perl 'ExtUtils::MakeMaker',
+	;
+
+requires_by_perl 'File::Temp',
+	;
+
 requires_by_perl 'IO::Socket::IP',
 	prior 5.014 => '==0.41',
+	;
+
+requires_by_perl 'List::MoreUtils',
 	;
 
 requires_by_perl 'Minilla',
 	prior 5.010 => skip,
 	;
 
+requires_by_perl 'Module::Build',
+	;
+
 requires_by_perl 'Perl::Critic',
 	prior 5.010 => '==1.142',
     otherwise      '>= 1.144',
+	;
+
+requires_by_perl 'Perl::Tidy', '>= 20220217',
 	;
 
 requires_by_perl 'Plack',
@@ -201,6 +219,10 @@ requires_by_perl 'Pod::Readme',
 	prior 5.012 => skip,
 	;
 
+requires_by_perl 'Pod::Spell', '>= 1.25',
+	;
+
+
 requires_by_perl 'Software::License::Perl_5',
 	prior 5.012 => '==0.104004',
 	;
@@ -208,6 +230,9 @@ requires_by_perl 'Software::License::Perl_5',
 requires_by_perl 'Sub::Exporter',
 	prior 5.012 => '==0.990',
 	otherwise skip
+	;
+
+requires_by_perl 'Test2::Bundle::Extended',
 	;
 
 requires_by_perl 'Test2::Harness',
@@ -220,48 +245,85 @@ requires_by_perl 'Test2::Harness::Renderer::JUnit',
 	prior 5.014	   => '==1.000005',
 	;
 
+requires_by_perl 'Test2::Plugin::NoWarnings',
+	;
+
+requires_by_perl 'Test2::Suite',
+	;
+
+requires_by_perl 'Test2::Tools::Explain',
+	;
+
+requires_by_perl 'Test::Builder',
+	;
+
+requires_by_perl 'Test::CPAN::Meta',
+	;
+
 requires_by_perl 'Test::Deep',
 	prior 5.012 => '==1.130',
 	otherwise skip
+	;
+
+requires_by_perl 'Test::Differences',
+	;
+
+requires_by_perl 'Test::EOL',
+	;
+
+requires_by_perl 'Test::Fatal',
+	;
+
+requires_by_perl 'Test::MinimumVersion',
 	;
 
 requires_by_perl 'Test::MockModule',
 	prior 5.012 => '==0.178',
 	;
 
+requires_by_perl 'Test::Mojibake',
+	;
+
+requires_by_perl 'Test::More',
+	;
+
+requires_by_perl 'Test::Needs',
+	;
+
+requires_by_perl 'Test::NoTabs',
+	;
+
+requires_by_perl 'Test::Perl::Critic',
+	;
+
+requires_by_perl 'Test::Pod',
+	;
+
+requires_by_perl 'Test::Pod::Coverage',
+	;
+
+requires_by_perl 'Test::Portability::Files',
+	;
+
+requires_by_perl 'Test::RequiresInternet',
+	;
+
+requires_by_perl 'Test::Simple',
+	;
+
+requires_by_perl 'Test::Spelling',
+	;
+
+requires_by_perl 'Test::Synopsis',
+	;
+
 requires_by_perl 'Test::Vars',
 	prior 5.010 => skip,
 	;
 
-requires 'App::cpanoutdated';
-requires 'ExtUtils::MakeMaker';
-requires 'File::Temp';
-requires 'List::MoreUtils';
-requires 'Module::Build';
-requires 'Perl::Tidy', '>= 20220217';
-requires 'Pod::Spell', '>= 1.25';
-requires 'Test2::Bundle::Extended';
-requires 'Test2::Plugin::NoWarnings';
-requires 'Test2::Suite';
-requires 'Test2::Tools::Explain';
-requires 'Test::Builder';
-requires 'Test::CPAN::Meta';
-requires 'Test::Differences';
-requires 'Test::EOL';
-requires 'Test::Fatal';
-requires 'Test::MinimumVersion';
-requires 'Test::Mojibake';
-requires 'Test::More';
-requires 'Test::Needs';
-requires 'Test::NoTabs';
-requires 'Test::Perl::Critic';
-requires 'Test::Pod';
-requires 'Test::Pod::Coverage';
-requires 'Test::Portability::Files';
-requires 'Test::RequiresInternet';
-requires 'Test::Simple';
-requires 'Test::Spelling';
-requires 'Test::Synopsis';
-requires 'Test::Version';
-requires 'Test::Warnings';
+requires_by_perl 'Test::Version',
+	;
+
+requires_by_perl 'Test::Warnings',
+	;
 
