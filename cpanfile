@@ -103,11 +103,31 @@ requires_by_perl 'Devel::Cover::Report::Coveralls',
 	prior 5.010 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::PluginBundle::Author::ETHER',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::PluginBundle::Author::OALDERS',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::PluginBundle::DROLSKY',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::PluginBundle::Milla',
+	prior 5.020 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::PluginBundle::RJBS',
 	prior 5.020 => skip,
 	prior 5.026 => '==5.023',
 	prior 5.034 => '==5.025',
 	otherwise	   '>5.028' # 5.028 requires v5.36 whereas following versions only v5.34, so omit it
+	;
+
+requires_by_perl 'Dist::Zilla::PluginBundle::Starter::Git',
+	prior 5.020 => skip,
 	;
 
 requires_by_perl 'IO::Socket::IP',
@@ -210,12 +230,7 @@ requires 'Test::Version';
 requires 'Test::Warnings';
 
 if ( "$]" >= 5.020 ) {
-    requires 'Dist::Zilla::PluginBundle::Author::ETHER';
-    requires 'Dist::Zilla::PluginBundle::Author::OALDERS';
-    requires 'Dist::Zilla::PluginBundle::DROLSKY';
-    requires 'Dist::Zilla::PluginBundle::Milla';
 
-    requires 'Dist::Zilla::PluginBundle::Starter::Git';
     requires 'Dist::Zilla::Plugin::CheckChangeLog';
     requires 'Dist::Zilla::Plugin::CopyFilesFromRelease';
     requires 'Dist::Zilla::Plugin::Deprecated';
