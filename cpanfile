@@ -3,14 +3,49 @@ use warnings;    # satisfy linter
 
 =pod
 
-Semantic sugar to simplify management of modules which changed their required Perl version
-(directly or via dependencies)
+=head1 requires_by_perl
 
-    requires_by_perl Module,
+Semantic helper to simplify management of modules which have changed
+their required Perl version (directly or via dependencies)
+
+    requires_by_perl 'Module',
         prior     5.010 => 'use version X',
         prior     5.012 => 'use version Y',
-        otherwise do_not_install
+        otherwise skip
         ;
+
+=head1 prior
+
+    prior VERSION => VERSION_SPEC, ...
+
+    requires_by_perl 'Module',
+        prior 5.010 => skip,
+        ;
+
+Semantic helper function to give data meaning,
+which version of a module should be installed for a Perl version
+prior to specified version.
+
+=head1 otherwise
+
+    otherwise VERSION_SPEC
+
+    requires_by_perl 'Module',
+        prior 5.010 => skip,
+        otherwise '5.0',
+        ;
+
+Semantic sugar function to give data meaning,
+which version of a module to install when none of the previous
+L</prior> expressions match.
+
+=head1 skip
+
+    prior 5.010 => skip,
+    otherwise skip,
+
+Semantic helper function representing L<VERSION_SPEC> with the meaning:
+do not install explicitly.
 
 =cut
 
@@ -31,127 +66,264 @@ sub requires_by_perl {
 
 sub prior { @_ }
 sub otherwise { @_ }
-sub do_not_install { undef }
+sub skip { undef }
+
+requires_by_perl 'App::cpanoutdated',
+	;
+
+requires_by_perl 'Code::TidyAll::Plugin::SortLines::Naturally',
+	prior 5.012 => skip
+	;
+
+requires_by_perl 'Code::TidyAll::Plugin::Test::Vars',
+	prior 5.012 => skip,
+	;
+
+requires_by_perl 'Code::TidyAll::Plugin::UniqueLines',
+	prior 5.014 => skip,
+	;
+
+requires_by_perl 'Data::OptList',
+	prior 5.012 => '==0.113',
+	otherwise skip
+	;
+
+requires_by_perl 'Data::Section',
+	prior 5.012 => '==0.200007',
+	otherwise skip,
+	;
+
+requires_by_perl 'Devel::Cover',
+	prior 5.010 => skip,
+	prior 5.012 => '==1.42',
+	;
+
+requires_by_perl 'Devel::Cover::Report::Codecov',
+	prior 5.010 => skip,
+	;
+
+requires_by_perl 'Devel::Cover::Report::Coveralls',
+	prior 5.010 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::CheckChangeLog',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::CopyFilesFromRelease',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::Deprecated',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::Git::Contributors',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::GitHubREADME::Badge',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::OurPkgVersion',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::Regenerate::AfterReleasers',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::StaticInstall',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::Test::ReportPrereqs',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::PluginBundle::Author::ETHER',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::PluginBundle::Author::OALDERS',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::PluginBundle::DROLSKY',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::PluginBundle::Milla',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::PluginBundle::RJBS',
+	prior 5.020 => skip,
+	prior 5.026 => '==5.023',
+	prior 5.034 => '==5.025',
+	otherwise	   '>5.028' # 5.028 requires v5.36 whereas following versions only v5.34, so omit it
+	;
+
+requires_by_perl 'Dist::Zilla::PluginBundle::Starter::Git',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'ExtUtils::MakeMaker',
+	;
+
+requires_by_perl 'File::Temp',
+	;
+
+requires_by_perl 'IO::Socket::IP',
+	prior 5.014 => '==0.41',
+	;
+
+requires_by_perl 'List::MoreUtils',
+	;
+
+requires_by_perl 'Minilla',
+	prior 5.010 => skip,
+	;
+
+requires_by_perl 'Module::Build',
+	;
+
+requires_by_perl 'Perl::Critic',
+	prior 5.010 => '==1.142',
+    otherwise      '>= 1.144',
+	;
+
+requires_by_perl 'Perl::Tidy', '>= 20220217',
+	;
+
+requires_by_perl 'Plack',
+	prior 5.012 => '==1.0050',
+	otherwise skip
+	;
+
+requires_by_perl 'Plack::Test',
+	prior 5.012 => skip
+	;
+
+requires_by_perl 'Pod::Coverage::TrustPod',
+	prior 5.014 => skip,
+	;
 
 requires_by_perl 'Pod::Man',
 	prior 5.010 => '==4.14',
 	prior 5.012 => '==5.01',
 	;
 
-# Last versions which install on < 5.12
-if ( "$]" < 5.012 ) {
-    requires 'Data::Section', '==0.200007';
-    requires 'Data::OptList', '==0.113';
-    requires 'Plack', '==1.0050';
-    requires 'Software::License::Perl_5', '==0.104004';
-    requires 'Sub::Exporter', '==0.990';
-    requires 'Test::Deep',    '==1.130';
-}
-else {
-    requires 'Software::License::Perl_5';
-    requires 'Plack::Test';
-}
+requires_by_perl 'Pod::Readme',
+	prior 5.012 => skip,
+	;
 
-if ( "$]" >= 5.010 ) {
-    requires 'Perl::Critic', '>= 1.144';
-}
-else {
-    requires 'Perl::Critic', '==1.142';
-}
+requires_by_perl 'Pod::Spell', '>= 1.25',
+	;
 
-requires 'App::cpanoutdated';
-requires 'ExtUtils::MakeMaker';
-requires 'File::Temp';
-requires 'List::MoreUtils';
-requires 'Module::Build';
-requires 'Perl::Tidy', '>= 20220217';
-requires 'Pod::Readme' if "$]" >= 5.012000;
-requires 'Pod::Spell', '>= 1.25';
-requires 'Test2::Bundle::Extended';
-requires 'Test2::Plugin::NoWarnings';
-requires 'Test2::Suite';
-requires 'Test2::Tools::Explain';
-requires 'Test::Builder';
-requires 'Test::CPAN::Meta';
-requires 'Test::Differences';
-requires 'Test::EOL';
-requires 'Test::Fatal';
-requires 'Test::MinimumVersion';
-requires 'Test::Mojibake';
-requires 'Test::More';
-requires 'Test::Needs';
-requires 'Test::NoTabs';
-requires 'Test::Perl::Critic';
-requires 'Test::Pod';
-requires 'Test::Pod::Coverage';
-requires 'Test::Portability::Files';
-requires 'Test::RequiresInternet';
-requires 'Test::Simple';
-requires 'Test::Spelling';
-requires 'Test::Synopsis';
-requires 'Test::Version';
-requires 'Test::Warnings';
 
-requires_by_perl 'Devel::Cover',
-	prior 5.010 => do_not_install,
-	prior 5.012 => '==1.42',
+requires_by_perl 'Software::License::Perl_5',
+	prior 5.012 => '==0.104004',
+	;
+
+requires_by_perl 'Sub::Exporter',
+	prior 5.012 => '==0.990',
+	otherwise skip
+	;
+
+requires_by_perl 'Test2::Bundle::Extended',
+	;
+
+requires_by_perl 'Test2::Harness',
+	prior 5.010 => skip,
+	prior 5.014 => '==1.000156',
+	;
+
+requires_by_perl 'Test2::Harness::Renderer::JUnit',
+	prior 5.010001 => skip,
+	prior 5.014	   => '==1.000005',
+	;
+
+requires_by_perl 'Test2::Plugin::NoWarnings',
+	;
+
+requires_by_perl 'Test2::Suite',
+	;
+
+requires_by_perl 'Test2::Tools::Explain',
+	;
+
+requires_by_perl 'Test::Builder',
+	;
+
+requires_by_perl 'Test::CPAN::Meta',
+	;
+
+requires_by_perl 'Test::Deep',
+	prior 5.012 => '==1.130',
+	otherwise skip
+	;
+
+requires_by_perl 'Test::Differences',
+	;
+
+requires_by_perl 'Test::EOL',
+	;
+
+requires_by_perl 'Test::Fatal',
+	;
+
+requires_by_perl 'Test::MinimumVersion',
 	;
 
 requires_by_perl 'Test::MockModule',
 	prior 5.012 => '==0.178',
 	;
 
-requires_by_perl 'Test2::Harness',
-	prior 5.010 => do_not_install,
-	prior 5.014 => '==1.000156',
+requires_by_perl 'Test::Mojibake',
 	;
 
-requires_by_perl 'Test2::Harness::Renderer::JUnit',
-	prior 5.010001 => do_not_install,
-	prior 5.014    => '==1.000005',
+requires_by_perl 'Test::More',
 	;
 
-if ( "$]" >= 5.010 ) {
-    requires 'Devel::Cover::Report::Codecov';
-    requires 'Devel::Cover::Report::Coveralls';
-    requires 'Minilla';
-    requires 'Test::Vars';
-}
+requires_by_perl 'Test::Needs',
+	;
 
-if ( "$]" >= 5.012 ) {
-    requires 'Code::TidyAll::Plugin::SortLines::Naturally';
-    requires 'Code::TidyAll::Plugin::Test::Vars';
-    requires 'Code::TidyAll::Plugin::UniqueLines';
-    requires 'Pod::Coverage::TrustPod';
-}
+requires_by_perl 'Test::NoTabs',
+	;
 
-if ( "$]" < 5.014 ) {
-    requires 'IO::Socket::IP', '==0.41';
-}
+requires_by_perl 'Test::Perl::Critic',
+	;
 
-if ( "$]" >= 5.020 ) {
-    requires 'Dist::Zilla::PluginBundle::Author::ETHER';
-    requires 'Dist::Zilla::PluginBundle::Author::OALDERS';
-    requires 'Dist::Zilla::PluginBundle::DROLSKY';
-    requires 'Dist::Zilla::PluginBundle::Milla';
+requires_by_perl 'Test::Pod',
+	;
 
-	requires_by_perl 'Dist::Zilla::PluginBundle::RJBS',
-		prior 5.020 => do_not_install,
-		prior 5.026 => '==5.023',
-		prior 5.034 => '==5.025',
-        otherwise      '>5.028' # 5.028 requires v5.36 whereas following versions only v5.34, so omit it
-		;
+requires_by_perl 'Test::Pod::Coverage',
+	;
 
-    requires 'Dist::Zilla::PluginBundle::Starter::Git';
-    requires 'Dist::Zilla::Plugin::CheckChangeLog';
-    requires 'Dist::Zilla::Plugin::CopyFilesFromRelease';
-    requires 'Dist::Zilla::Plugin::Deprecated';
-    requires 'Dist::Zilla::Plugin::Git::Contributors';
-    requires 'Dist::Zilla::Plugin::GitHubREADME::Badge';
-    requires 'Dist::Zilla::Plugin::OurPkgVersion';
-    requires 'Dist::Zilla::Plugin::Regenerate::AfterReleasers';
-    requires 'Dist::Zilla::Plugin::StaticInstall';
-    requires 'Dist::Zilla::Plugin::Test::ReportPrereqs';
+requires_by_perl 'Test::Portability::Files',
+	;
 
-    # ...
-}
+requires_by_perl 'Test::RequiresInternet',
+	;
+
+requires_by_perl 'Test::Simple',
+	;
+
+requires_by_perl 'Test::Spelling',
+	;
+
+requires_by_perl 'Test::Synopsis',
+	;
+
+requires_by_perl 'Test::Vars',
+	prior 5.010 => skip,
+	;
+
+requires_by_perl 'Test::Version',
+	;
+
+requires_by_perl 'Test::Warnings',
+	;
+
