@@ -68,6 +68,11 @@ sub prior { @_ }
 sub otherwise { @_ }
 sub skip { undef }
 
+requires_by_perl 'Data::OptList',
+	prior 5.012 => '==0.113',
+	otherwise skip
+	;
+
 requires_by_perl 'Data::Section',
 	prior 5.012 => '==0.200007',
 	otherwise skip,
@@ -106,7 +111,6 @@ requires_by_perl 'Test::MockModule',
 
 # Last versions which install on < 5.12
 if ( "$]" < 5.012 ) {
-    requires 'Data::OptList', '==0.113';
     requires 'Plack', '==1.0050';
     requires 'Software::License::Perl_5', '==0.104004';
     requires 'Sub::Exporter', '==0.990';
