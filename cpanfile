@@ -119,13 +119,17 @@ requires_by_perl 'Test2::Harness::Renderer::JUnit',
 	prior 5.014	   => '==1.000005',
 	;
 
+requires_by_perl 'Test::Deep',
+	prior 5.012 => '==1.130',
+	otherwise skip
+	;
+
 requires_by_perl 'Test::MockModule',
 	prior 5.012 => '==0.178',
 	;
 
 # Last versions which install on < 5.12
 if ( "$]" < 5.012 ) {
-    requires 'Test::Deep',    '==1.130';
 }
 else {
     requires 'Plack::Test';
