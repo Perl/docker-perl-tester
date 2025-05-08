@@ -110,6 +110,10 @@ requires_by_perl 'Dist::Zilla::PluginBundle::RJBS',
 	otherwise	   '>5.028' # 5.028 requires v5.36 whereas following versions only v5.34, so omit it
 	;
 
+requires_by_perl 'IO::Socket::IP',
+	prior 5.014 => '==0.41',
+	;
+
 requires_by_perl 'Minilla',
 	prior 5.010 => skip,
 	;
@@ -204,10 +208,6 @@ requires 'Test::Spelling';
 requires 'Test::Synopsis';
 requires 'Test::Version';
 requires 'Test::Warnings';
-
-if ( "$]" < 5.014 ) {
-    requires 'IO::Socket::IP', '==0.41';
-}
 
 if ( "$]" >= 5.020 ) {
     requires 'Dist::Zilla::PluginBundle::Author::ETHER';
