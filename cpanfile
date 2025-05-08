@@ -72,6 +72,10 @@ requires_by_perl 'Code::TidyAll::Plugin::SortLines::Naturally',
 	prior 5.012 => skip
 	;
 
+requires_by_perl 'Code::TidyAll::Plugin::Test::Vars',
+	prior 5.012 => skip,
+	;
+
 requires_by_perl 'Data::OptList',
 	prior 5.012 => '==0.113',
 	otherwise skip
@@ -194,7 +198,6 @@ requires 'Test::Version';
 requires 'Test::Warnings';
 
 if ( "$]" >= 5.012 ) {
-    requires 'Code::TidyAll::Plugin::Test::Vars';
     requires 'Code::TidyAll::Plugin::UniqueLines';
     requires 'Pod::Coverage::TrustPod';
 }
