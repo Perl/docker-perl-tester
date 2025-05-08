@@ -100,6 +100,10 @@ requires_by_perl 'Pod::Man',
 	prior 5.012 => '==5.01',
 	;
 
+requires_by_perl 'Software::License::Perl_5',
+	prior 5.012 => '==0.104004',
+	;
+
 requires_by_perl 'Test2::Harness',
 	prior 5.010 => skip,
 	prior 5.014 => '==1.000156',
@@ -116,12 +120,10 @@ requires_by_perl 'Test::MockModule',
 
 # Last versions which install on < 5.12
 if ( "$]" < 5.012 ) {
-    requires 'Software::License::Perl_5', '==0.104004';
     requires 'Sub::Exporter', '==0.990';
     requires 'Test::Deep',    '==1.130';
 }
 else {
-    requires 'Software::License::Perl_5';
     requires 'Plack::Test';
 }
 
