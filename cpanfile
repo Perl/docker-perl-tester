@@ -90,6 +90,11 @@ requires_by_perl 'Dist::Zilla::PluginBundle::RJBS',
 	otherwise	   '>5.028' # 5.028 requires v5.36 whereas following versions only v5.34, so omit it
 	;
 
+requires_by_perl 'Perl::Critic',
+	prior 5.010 => '==1.142',
+    otherwise      '>= 1.144',
+	;
+
 requires_by_perl 'Plack',
 	prior 5.012 => '==1.0050',
 	otherwise skip
@@ -131,13 +136,6 @@ requires_by_perl 'Test::Deep',
 requires_by_perl 'Test::MockModule',
 	prior 5.012 => '==0.178',
 	;
-
-if ( "$]" >= 5.010 ) {
-    requires 'Perl::Critic', '>= 1.144';
-}
-else {
-    requires 'Perl::Critic', '==1.142';
-}
 
 requires 'App::cpanoutdated';
 requires 'ExtUtils::MakeMaker';
