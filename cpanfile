@@ -74,6 +74,9 @@ sub skip { undef }
 requires_by_perl 'App::cpanoutdated',
 	;
 
+requires_by_perl 'App::Prove',          # Upgrade to newest version
+	;
+
 requires_by_perl 'Code::TidyAll::Plugin::SortLines::Naturally',
 	prior 5.012 => skip
 	;
