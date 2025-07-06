@@ -21,7 +21,7 @@ jobs:
         uses: perl-actions/perl-versions@main
         with:
           since-perl: '5.8'
-          with-devel: 'true'
+          with-devel: 'false'
 
   # bookworm base images only exist for 5.36 and newer.
   prepare-matrix-bookworm:
@@ -35,7 +35,7 @@ jobs:
         uses: perl-actions/perl-versions@main
         with:
           since-perl: '5.36'
-          with-devel: 'true'
+          with-devel: 'false'
 
   latest-build:
     name: "Build latest"
@@ -56,6 +56,22 @@ jobs:
           dockerfile: Dockerfile
           buildargs: BASE=buster
           tags: "latest,${{ matrix.debian-version }}"
+
+  devel-build:
+    name: "Build latest"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@v5
+        with:
+          name: ${{ secrets.DOCKER_REPO }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
+          dockerfile: Dockerfile
+          buildargs: BASE=devel-slim-bookworm
+          tags: "devel,devel-slim-bookworm"
 
   build-buster:
     name: "Build versions for buster"
