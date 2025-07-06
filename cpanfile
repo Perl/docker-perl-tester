@@ -57,7 +57,10 @@ sub requires_by_perl {
 			unless @_ == 1 || $] < shift
 			;
 
-		push @requires, shift // return;
+		my $version = shift;
+		return unless defined $version;
+
+		push @requires, $version;
 		last;
 	}
 
@@ -69,6 +72,9 @@ sub otherwise { @_ }
 sub skip { undef }
 
 requires_by_perl 'App::cpanoutdated',
+	;
+
+requires_by_perl 'App::Prove',          # Upgrade to newest version
 	;
 
 requires_by_perl 'Code::TidyAll::Plugin::SortLines::Naturally',
@@ -175,6 +181,11 @@ requires_by_perl 'ExtUtils::MakeMaker',
 requires_by_perl 'File::Temp',
 	;
 
+requires_by_perl 'HTML::Tagset',        # Transitive dependency of Plack
+	prior 5.010 => '==3.20',
+	otherwise skip
+	;
+
 requires_by_perl 'IO::Socket::IP',
 	prior 5.014 => '==0.41',
 	;
@@ -190,7 +201,7 @@ requires_by_perl 'Module::Build',
 	;
 
 requires_by_perl 'Perl::Critic',
-	prior 5.010 => '==1.142',
+	prior 5.010 => '==1.140',           # v.142 - failing test t/20_policies.t
     otherwise      '>= 1.144',
 	;
 
@@ -198,6 +209,7 @@ requires_by_perl 'Perl::Tidy', '>= 20220217',
 	;
 
 requires_by_perl 'Plack',
+	prior 5.010 => undef,               # requires Pod::Usage >= 1.36 (podlators)
 	prior 5.012 => '==1.0050',
 	otherwise skip
 	;
@@ -217,6 +229,11 @@ requires_by_perl 'Pod::Man',
 
 requires_by_perl 'Pod::Readme',
 	prior 5.012 => skip,
+	;
+
+requires_by_perl 'Pod::Usage',          # Dependency of Plack
+	prior 5.010 => '==1.70',
+	otherwise  skip
 	;
 
 requires_by_perl 'Pod::Spell', '>= 1.25',
@@ -278,6 +295,7 @@ requires_by_perl 'Test::MinimumVersion',
 	;
 
 requires_by_perl 'Test::MockModule',
+	prior 5.010 => '==0.175',            # since 0.176 t/mock_strict.t is failing
 	prior 5.012 => '==0.178',
 	;
 

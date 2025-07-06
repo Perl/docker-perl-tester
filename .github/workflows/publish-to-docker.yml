@@ -20,7 +20,7 @@ jobs:
         id: action
         uses: perl-actions/perl-versions@main
         with:
-          since-perl: '5.10'
+          since-perl: '5.8'
           with-devel: 'true'
 
   # bookworm base images only exist for 5.36 and newer.
