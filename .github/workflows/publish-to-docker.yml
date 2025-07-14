@@ -10,31 +10,50 @@ on:
   workflow_dispatch:
 
 jobs:
+  # buster images do not exist for 5.42 and newer.
   prepare-matrix-buster:
     runs-on: ubuntu-latest
-    name: List perl versions
+    name: "List perl versions [buster]"
     outputs:
       perl-versions: ${{ steps.action.outputs.perl-versions }}
     steps:
       - name: Perl versions action step
         id: action
-        uses: perl-actions/perl-versions@main
+        uses: perl-actions/perl-versions@v1.3
         with:
           since-perl: '5.8'
+          to-perl: '5.40'
           with-devel: 'false'
 
   # bookworm base images only exist for 5.36 and newer.
+  # use default tags for 5.36 and newer
   prepare-matrix-bookworm:
     runs-on: ubuntu-latest
-    name: List perl versions
+    name: "List perl versions [bookworm]"
     outputs:
       perl-versions: ${{ steps.action.outputs.perl-versions }}
     steps:
       - name: Perl versions action step
         id: action
-        uses: perl-actions/perl-versions@main
+        uses: perl-actions/perl-versions@v1.3
         with:
           since-perl: '5.36'
+          to-perl: '5.40'
+          with-devel: 'false'
+
+  # bookworm base images only exist for 5.36 and newer.
+  # use default tags for 5.36 and newer
+  prepare-matrix-bookworm-defaults:
+    runs-on: ubuntu-latest
+    name: "List perl versions [bookworm defaults]"
+    outputs:
+      perl-versions: ${{ steps.action.outputs.perl-versions }}
+    steps:
+      - name: Perl versions action step
+        id: action
+        uses: perl-actions/perl-versions@v1.3
+        with:
+          since-perl: '5.42'
           with-devel: 'false'
 
   latest-build:
@@ -116,3 +135,29 @@ jobs:
           dockerfile: Dockerfile
           buildargs: BASE=${{ matrix.perl-version }}-slim-bookworm,CPANOUTDATED=1
           tags: "${{ matrix.perl-version }}-slim-bookworm"
+
+##
+## This is similar to `build-bookworm` but with the extra default tag for the Perl version
+##
+
+  build-bookworm-defaults:
+    name: "Build versions for bookworm"
+    runs-on: ubuntu-latest
+    needs:
+      - prepare-matrix-bookworm-defaults
+
+    strategy:
+      fail-fast: false
+      matrix:
+        perl-version: ${{ fromJson (needs.prepare-matrix-bookworm-defaults.outputs.perl-versions) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@v5
+        with:
+          name: ${{ secrets.DOCKER_REPO }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
+          dockerfile: Dockerfile
+          buildargs: BASE=${{ matrix.perl-version }}-slim-bookworm,CPANOUTDATED=1
+          tags: "${{ matrix.perl-version }}-slim-bookworm,${{ matrix.perl-version }}"
