@@ -113,24 +113,14 @@ jobs:
           buildargs: BASE=${{ matrix.perl-version }}-buster,CPANOUTDATED=1
           tags: "${{ matrix.perl-version }}-buster,${{ matrix.perl-version }}"
 
-  build-bookworm-unified:
-    name: "Build versions for bookworm"
+  build-bookworm-extra:
+    name: "Build bookworm extra versions"
     runs-on: ubuntu-latest
-    needs:
-      - prepare-matrix-bookworm-extra
-      - prepare-matrix-bookworm-defaults
-
+    needs: prepare-matrix-bookworm-extra
     strategy:
       fail-fast: false
       matrix:
-        include:
-          # Regular bookworm builds (5.36-5.40)
-          - perl-version: ${{ fromJson(needs.prepare-matrix-bookworm-extra.outputs.perl-versions) }}
-            add-default-tag: false
-          # Default bookworm builds (5.42+)
-          - perl-version: ${{ fromJson(needs.prepare-matrix-bookworm-defaults.outputs.perl-versions) }}
-            add-default-tag: true
-
+        perl-version: ${{ fromJson(needs.prepare-matrix-bookworm-extra.outputs.perl-versions) }}
     steps:
       - uses: actions/checkout@v4
       - name: Publish to Registry
@@ -141,4 +131,24 @@ jobs:
           password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
           dockerfile: Dockerfile
           buildargs: BASE=${{ matrix.perl-version }}-slim-bookworm,CPANOUTDATED=1
-          tags: ${{ matrix.add-default-tag == 'true' && format('{0}-slim-bookworm,{0}', matrix.perl-version) || format('{0}-slim-bookworm', matrix.perl-version) }}
+          tags: ${{ matrix.perl-version }}-slim-bookworm
+
+  build-bookworm-defaults:
+    name: "Build bookworm default versions"
+    runs-on: ubuntu-latest
+    needs: prepare-matrix-bookworm-defaults
+    strategy:
+      fail-fast: false
+      matrix:
+        perl-version: ${{ fromJson(needs.prepare-matrix-bookworm-defaults.outputs.perl-versions) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@v5
+        with:
+          name: ${{ secrets.DOCKER_REPO }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
+          dockerfile: Dockerfile
+          buildargs: BASE=${{ matrix.perl-version }}-slim-bookworm,CPANOUTDATED=1
+          tags: ${{ matrix.perl-version }}-slim-bookworm,${{ matrix.perl-version }}
