@@ -27,7 +27,7 @@ jobs:
 
   # bookworm base images only exist for 5.36 and newer.
   # use default tags for 5.36 and newer
-  prepare-matrix-bookworm:
+  prepare-matrix-bookworm-extra:
     runs-on: ubuntu-latest
     name: "List perl versions [bookworm]"
     outputs:
@@ -41,8 +41,7 @@ jobs:
           to-perl: '5.40'
           with-devel: 'false'
 
-  # bookworm base images only exist for 5.36 and newer.
-  # use default tags for 5.36 and newer
+  # Similar to the `matrix-bookworm` job, but also add the default tag like `5.42` to the list
   prepare-matrix-bookworm-defaults:
     runs-on: ubuntu-latest
     name: "List perl versions [bookworm defaults]"
@@ -114,42 +113,24 @@ jobs:
           buildargs: BASE=${{ matrix.perl-version }}-buster,CPANOUTDATED=1
           tags: "${{ matrix.perl-version }}-buster,${{ matrix.perl-version }}"
 
-  build-bookworm:
+  build-bookworm-unified:
     name: "Build versions for bookworm"
     runs-on: ubuntu-latest
     needs:
-      - prepare-matrix-bookworm
-
-    strategy:
-      fail-fast: false
-      matrix:
-        perl-version: ${{ fromJson (needs.prepare-matrix-bookworm.outputs.perl-versions) }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@v5
-        with:
-          name: ${{ secrets.DOCKER_REPO }}
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
-          dockerfile: Dockerfile
-          buildargs: BASE=${{ matrix.perl-version }}-slim-bookworm,CPANOUTDATED=1
-          tags: "${{ matrix.perl-version }}-slim-bookworm"
-
-##
-## This is similar to `build-bookworm` but with the extra default tag for the Perl version
-##
-
-  build-bookworm-defaults:
-    name: "Build versions for bookworm"
-    runs-on: ubuntu-latest
-    needs:
+      - prepare-matrix-bookworm-extra
       - prepare-matrix-bookworm-defaults
 
     strategy:
       fail-fast: false
       matrix:
-        perl-version: ${{ fromJson (needs.prepare-matrix-bookworm-defaults.outputs.perl-versions) }}
+        include:
+          # Regular bookworm builds (5.36-5.40)
+          - perl-versions: ${{ fromJson(needs.prepare-matrix-bookworm-extra.outputs.perl-versions) }}
+            add-default-tag: false
+          # Default bookworm builds (5.42+)
+          - perl-versions: ${{ fromJson(needs.prepare-matrix-bookworm-defaults.outputs.perl-versions) }}
+            add-default-tag: true
+
     steps:
       - uses: actions/checkout@v4
       - name: Publish to Registry
@@ -160,4 +141,4 @@ jobs:
           password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
           dockerfile: Dockerfile
           buildargs: BASE=${{ matrix.perl-version }}-slim-bookworm,CPANOUTDATED=1
-          tags: "${{ matrix.perl-version }}-slim-bookworm,${{ matrix.perl-version }}"
+          tags: ${{ matrix.add-default-tag == 'true' && format('{0}-slim-bookworm,{0}', matrix.perl-version) || format('{0}-slim-bookworm', matrix.perl-version) }}
