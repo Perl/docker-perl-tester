@@ -72,7 +72,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
           dockerfile: Dockerfile
-          buildargs: BASE=buster
+          buildargs: BASE=${{ matrix.debian-version }}
           tags: "latest,${{ matrix.debian-version }}"
 
   devel-build:
