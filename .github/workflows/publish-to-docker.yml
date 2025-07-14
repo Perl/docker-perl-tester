@@ -125,10 +125,10 @@ jobs:
       matrix:
         include:
           # Regular bookworm builds (5.36-5.40)
-          - perl-versions: ${{ fromJson(needs.prepare-matrix-bookworm-extra.outputs.perl-versions) }}
+          - perl-version: ${{ fromJson(needs.prepare-matrix-bookworm-extra.outputs.perl-versions) }}
             add-default-tag: false
           # Default bookworm builds (5.42+)
-          - perl-versions: ${{ fromJson(needs.prepare-matrix-bookworm-defaults.outputs.perl-versions) }}
+          - perl-version: ${{ fromJson(needs.prepare-matrix-bookworm-defaults.outputs.perl-versions) }}
             add-default-tag: true
 
     steps:
