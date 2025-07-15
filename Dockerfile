@@ -2,11 +2,24 @@ ARG BASE
 ARG CPANOUTDATED
 FROM perl:${BASE}
 
+ENV BASE_IMAGE=${BASE}
+
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 COPY cpanfile /tmp/
 
 RUN perl -V
+
+RUN echo "DEBUG: BASE value is: ${BASE_IMAGE}" && \
+    if echo "${BASE_IMAGE}" | grep -q "buster"; then \
+        echo "DEBUG: BASE contains buster, updating sources.list"; \
+        sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /etc/apt/sources.list; \
+        sed -i 's|http://security.debian.org/debian-security|http://archive.debian.org/debian-security|g' /etc/apt/sources.list; \
+        echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid-until; \
+        echo "DEBUG: Archive sources configured successfully"; \
+    else \
+        echo "DEBUG: BASE does not contain buster, skipping archive configuration"; \
+    fi
 
 RUN apt-get update && \
         apt-get dist-upgrade -y && \
