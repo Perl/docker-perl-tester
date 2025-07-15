@@ -2,6 +2,9 @@ ARG BASE
 ARG CPANOUTDATED
 FROM perl:${BASE}
 
+# redefine after the FROM
+ARG BASE
+ARG CPANOUTDATED
 ENV BASE_IMAGE=${BASE}
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
