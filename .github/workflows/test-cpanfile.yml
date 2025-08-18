@@ -32,7 +32,7 @@ jobs:
         perl-version: ${{ fromJson (needs.prepare-matrix.outputs.perl-versions) }}
     name: Perl ${{ matrix.perl-version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install deps using cpm
         uses: perl-actions/install-with-cpm@v1
         with:
