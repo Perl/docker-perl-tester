@@ -202,7 +202,7 @@ requires_by_perl 'Module::Build',
 
 requires_by_perl 'Perl::Critic',
 	prior 5.010 => '==1.140',           # v.142 - failing test t/20_policies.t
-    otherwise      '>= 1.144',
+	otherwise      '>= 1.144',
 	;
 
 requires_by_perl 'Perl::Tidy', '>= 20220217',
@@ -289,7 +289,7 @@ requires_by_perl 'Test::EOL',
 	;
 
 requires_by_perl 'Test::Fatal',
-  prior 5.012 => '==0.017',
+	prior 5.012 => '==0.017',
 	;
 
 requires_by_perl 'Test::MinimumVersion',
