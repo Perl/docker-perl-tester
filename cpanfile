@@ -175,6 +175,10 @@ requires_by_perl 'Dist::Zilla::PluginBundle::Starter::Git',
 	prior 5.020 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::CopyReadmeFromBuild',
+	prior 5.020 => skip,
+	;
+
 requires_by_perl 'ExtUtils::MakeMaker',
 	;
 
