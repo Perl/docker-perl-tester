@@ -1,36 +1,67 @@
----
-name: Install from cpanfile
-
+name: Test install from cpanfile
 on:
   pull_request:
     branches:
       - '*'
   workflow_dispatch:
+
 jobs:
-  prepare-matrix:
+  # buster images do not exist for 5.42 and newer.
+  prepare-matrix-buster:
     runs-on: ubuntu-latest
-    name: List perl versions
+    name: "List perl versions [buster]"
     outputs:
       perl-versions: ${{ steps.action.outputs.perl-versions }}
     steps:
       - name: Perl versions action step
         id: action
-        uses: perl-actions/perl-versions@main
+        uses: perl-actions/perl-versions@v1.3
         with:
-          since-perl: '5.10'
-          with-devel: 'true'
+          since-perl: '5.8'
+          to-perl: '5.40'
+          with-devel: 'false'
 
-  test-job:
+  # bookworm base images only exist for 5.36 and newer.
+  # use default tags for 5.36 and newer
+  prepare-matrix-bookworm-extra:
+    runs-on: ubuntu-latest
+    name: "List perl versions [bookworm]"
+    outputs:
+      perl-versions: ${{ steps.action.outputs.perl-versions }}
+    steps:
+      - name: Perl versions action step
+        id: action
+        uses: perl-actions/perl-versions@v1.3
+        with:
+          since-perl: '5.36'
+          to-perl: '5.40'
+          with-devel: 'false'
+
+  # Similar to the `matrix-bookworm` job, but also add the default tag like `5.42` to the list
+  prepare-matrix-bookworm-defaults:
+    runs-on: ubuntu-latest
+    name: "List perl versions [bookworm defaults]"
+    outputs:
+      perl-versions: ${{ steps.action.outputs.perl-versions }}
+    steps:
+      - name: Perl versions action step
+        id: action
+        uses: perl-actions/perl-versions@v1.3
+        with:
+          since-perl: '5.42'
+          with-devel: 'false'
+
+  test-buster:
     runs-on: ubuntu-latest
     needs:
-      - prepare-matrix
+      - prepare-matrix-buster
     container:
       image: perl:${{ matrix.perl-version }}-buster
     strategy:
       fail-fast: false
       matrix:
-        perl-version: ${{ fromJson (needs.prepare-matrix.outputs.perl-versions) }}
-    name: Perl ${{ matrix.perl-version }}
+        perl-version: ${{ fromJson (needs.prepare-matrix-buster.outputs.perl-versions) }}
+    name: Perl ${{ matrix.perl-version }} buster
     steps:
       - uses: actions/checkout@v6
       - name: Install deps using cpm
@@ -38,3 +69,51 @@ jobs:
         with:
           cpanfile: 'cpanfile'
           sudo: false
+
+  test-bookwrom-extra:
+    runs-on: ubuntu-latest
+    needs:
+      - prepare-matrix-bookworm-extra
+    container:
+      image: perl:${{ matrix.perl-version }}-slim-bookworm
+    strategy:
+      fail-fast: false
+      matrix:
+        perl-version: ${{ fromJson (needs.prepare-matrix-bookworm-extra.outputs.perl-versions) }}
+    name: Perl ${{ matrix.perl-version }} bookworm
+    steps:
+      - uses: actions/checkout@v6
+      - name: Add tools
+        run: |
+          apt-get update
+          apt-get install  -y --no-install-recommends build-essential git
+      - name: Install deps using cpm
+        uses: perl-actions/install-with-cpm@v1
+        with:
+          cpanfile: 'cpanfile'
+          sudo: false
+
+  test-bookwrom-defaults:
+    runs-on: ubuntu-latest
+    needs:
+      - prepare-matrix-bookworm-defaults
+    container:
+      image: perl:${{ matrix.perl-version }}-slim-bookworm
+    strategy:
+      fail-fast: false
+      matrix:
+        perl-version: ${{ fromJson (needs.prepare-matrix-bookworm-defaults.outputs.perl-versions) }}
+    name: Perl ${{ matrix.perl-version }} bookworm
+    steps:
+      - uses: actions/checkout@v6
+      - name: Add tools
+        run: |
+          apt-get update
+          apt-get install  -y --no-install-recommends build-essential git
+      - name: Install deps using cpm
+        uses: perl-actions/install-with-cpm@v1
+        with:
+          cpanfile: 'cpanfile'
+          sudo: false
+
+
