@@ -183,6 +183,10 @@ requires_by_perl 'Dist::Zilla::Plugin::HasVersionTests',
 	prior 5.020 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::KwaliteeTests',
+	prior 5.020 => skip,
+	;
+
 requires_by_perl 'ExtUtils::MakeMaker',
 	;
 
