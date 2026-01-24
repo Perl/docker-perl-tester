@@ -9,8 +9,6 @@ on:
     - cron: "10 6 * * *"
   workflow_dispatch:
 
-
-
 jobs:
   # buster images do not exist for 5.42 and newer.
   prepare-matrix-buster:
