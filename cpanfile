@@ -358,6 +358,9 @@ requires_by_perl 'Test::Version',
 requires_by_perl 'Test::Warnings',
 	;
 
+requires_by_perl 'Test::Trap',
+	;
+
 requires_by_perl 'Module::Build::Version',
 	prior 5.020 => skip,
 	;
