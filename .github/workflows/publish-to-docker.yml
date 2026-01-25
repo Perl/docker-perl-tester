@@ -68,12 +68,13 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
-          name: ${{ secrets.DOCKER_REPO }}
+          name: perldocker/perl-tester
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
           dockerfile: Dockerfile
           buildargs: BASE=${{ matrix.debian-version }}
           tags: "latest,${{ matrix.debian-version }}"
+          no_push: ${{ github.repository_owner != 'Perl' || github.ref_name != 'main' }}
 
   devel-build:
     name: "Build latest"
@@ -84,12 +85,13 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
-          name: ${{ secrets.DOCKER_REPO }}
+          name: perldocker/perl-tester
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
           dockerfile: Dockerfile
           buildargs: BASE=devel-slim-bookworm
           tags: "devel,devel-slim-bookworm"
+          no_push: ${{ github.repository_owner != 'Perl' || github.ref_name != 'main' }}
 
   build-buster:
     name: "Build versions for buster"
@@ -106,12 +108,13 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
-          name: ${{ secrets.DOCKER_REPO }}
+          name: perldocker/perl-tester
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
           dockerfile: Dockerfile
           buildargs: BASE=${{ matrix.perl-version }}-buster,CPANOUTDATED=1
           tags: "${{ matrix.perl-version }}-buster,${{ matrix.perl-version }}"
+          no_push: ${{ github.repository_owner != 'Perl' || github.ref_name != 'main' }}
 
   build-bookworm-extra:
     name: "Build bookworm extra versions"
@@ -126,12 +129,13 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
-          name: ${{ secrets.DOCKER_REPO }}
+          name: perldocker/perl-tester
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
           dockerfile: Dockerfile
           buildargs: BASE=${{ matrix.perl-version }}-slim-bookworm,CPANOUTDATED=1
           tags: ${{ matrix.perl-version }}-slim-bookworm
+          no_push: ${{ github.repository_owner != 'Perl' || github.ref_name != 'main' }}
 
   build-bookworm-defaults:
     name: "Build bookworm default versions"
@@ -146,9 +150,11 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
-          name: ${{ secrets.DOCKER_REPO }}
+          name: perldocker/perl-tester
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
           dockerfile: Dockerfile
           buildargs: BASE=${{ matrix.perl-version }}-slim-bookworm,CPANOUTDATED=1
           tags: ${{ matrix.perl-version }}-slim-bookworm,${{ matrix.perl-version }}
+          no_push: ${{ github.repository_owner != 'Perl' || github.ref_name != 'main' }}
+
