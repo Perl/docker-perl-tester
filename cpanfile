@@ -99,6 +99,9 @@ requires_by_perl 'Data::Section',
 	otherwise skip,
 	;
 
+requires_by_perl 'DateTime::Format::ISO8601',
+	;
+
 requires_by_perl 'Devel::Cover',
 	prior 5.010 => skip,
 	prior 5.012 => '==1.42',
