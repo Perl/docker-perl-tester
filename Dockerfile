@@ -29,6 +29,7 @@ RUN apt-get update && \
         apt-get -y --no-install-recommends install \
             aspell aspell-en \
             build-essential \
+            gpg \
             git
 
 RUN cpanm --self-upgrade || \
