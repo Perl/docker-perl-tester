@@ -86,7 +86,7 @@ jobs:
       - name: Add tools
         run: |
           apt-get update
-          apt-get install  -y --no-install-recommends build-essential git
+          apt-get install  -y --no-install-recommends build-essential gpg git
       - name: Install deps using cpm
         uses: perl-actions/install-with-cpm@v1
         with:
@@ -109,7 +109,7 @@ jobs:
       - name: Add tools
         run: |
           apt-get update
-          apt-get install  -y --no-install-recommends build-essential git
+          apt-get install  -y --no-install-recommends build-essential gpg git
       - name: Install deps using cpm
         uses: perl-actions/install-with-cpm@v1
         with:

@@ -209,6 +209,10 @@ requires_by_perl 'Dist::Zilla::Plugin::ReportVersions',
 	prior 5.020 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::Signature',
+	prior 5.020 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::Plugin::SourceHutMeta',
 	prior 5.020 => skip,
 	;
