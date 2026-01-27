@@ -99,6 +99,9 @@ requires_by_perl 'Data::Section',
 	otherwise skip,
 	;
 
+requires_by_perl 'DateTime::Format::Duration',
+	;
+
 requires_by_perl 'DateTime::Format::ISO8601',
 	;
 
