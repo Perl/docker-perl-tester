@@ -119,6 +119,10 @@ requires_by_perl 'Dist::Zilla::Plugin::CheckChangeLog',
 	prior 5.020 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::Clean',
+	prior 5.020 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::Plugin::CopyFilesFromRelease',
 	prior 5.020 => skip,
 	;
