@@ -162,6 +162,10 @@ requires_by_perl 'Dist::Zilla::Plugin::Test::ReportPrereqs',
 	prior 5.020 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::PluginBundle::Author::DOMM',
+	prior 5.020 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::PluginBundle::Author::ETHER',
 	prior 5.020 => skip,
 	;
