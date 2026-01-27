@@ -201,15 +201,15 @@ requires_by_perl 'Dist::Zilla::Plugin::KwaliteeTests',
 	prior 5.020 => skip,
 	;
 
-requires_by_perl 'Dist::Zilla::Plugin::Test::CheckChanges',
-	prior 5.020 => skip,
-	;
-
 requires_by_perl 'Dist::Zilla::Plugin::ReportVersions',
 	prior 5.020 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::SourceHutMeta',
+	prior 5.020 => skip,
+	;
+
+requires_by_perl 'Dist::Zilla::Plugin::Test::CheckChanges',
 	prior 5.020 => skip,
 	;
 
@@ -236,6 +236,10 @@ requires_by_perl 'Minilla',
 	;
 
 requires_by_perl 'Module::Build',
+	;
+
+requires_by_perl 'Module::Build::Version',
+	prior 5.020 => skip,
 	;
 
 requires_by_perl 'Perl::Critic',
@@ -377,6 +381,9 @@ requires_by_perl 'Test::Spelling',
 requires_by_perl 'Test::Synopsis',
 	;
 
+requires_by_perl 'Test::Trap',
+	;
+
 requires_by_perl 'Test::Vars',
 	prior 5.010 => skip,
 	;
@@ -387,10 +394,4 @@ requires_by_perl 'Test::Version',
 requires_by_perl 'Test::Warnings',
 	;
 
-requires_by_perl 'Test::Trap',
-	;
-
-requires_by_perl 'Module::Build::Version',
-	prior 5.020 => skip,
-	;
 
