@@ -154,6 +154,10 @@ requires_by_perl 'Dist::Zilla::Plugin::StaticInstall',
 	prior 5.020 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::Test::Perl::Critic',
+	prior 5.020 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::Plugin::Test::DistManifest',
 	prior 5.020 => skip,
 	;
