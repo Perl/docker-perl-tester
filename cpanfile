@@ -369,6 +369,9 @@ requires_by_perl 'Test::Needs',
 requires_by_perl 'Test::NoTabs',
 	;
 
+requires_by_perl 'Test::Output',
+	;
+
 requires_by_perl 'Test::Perl::Critic',
 	;
 
