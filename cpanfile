@@ -365,6 +365,9 @@ requires_by_perl 'Test::MockModule',
 	prior 5.012 => '==0.178',
 	;
 
+requires_by_perl 'Test::MockObject',
+	;
+
 requires_by_perl 'Test::Mojibake',
 	;
 
