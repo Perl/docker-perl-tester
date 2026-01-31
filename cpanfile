@@ -380,6 +380,9 @@ requires_by_perl 'Test::LongString',
 requires_by_perl 'Test::MinimumVersion',
 	;
 
+requires_by_perl 'Test::Memory::Cycle',
+	;
+
 requires_by_perl 'Test::MockModule',
 	prior 5.010 => '==0.175',            # since 0.176 t/mock_strict.t is failing
 	prior 5.012 => '==0.178',
