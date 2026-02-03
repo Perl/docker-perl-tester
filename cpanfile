@@ -146,6 +146,10 @@ requires_by_perl 'Dist::Zilla::Plugin::GitHubREADME::Badge',
 	prior 5.020 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::InlineFilesMARCEL',
+	prior 5.020 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::Plugin::OurPkgVersion',
 	prior 5.020 => skip,
 	;
