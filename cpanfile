@@ -367,6 +367,9 @@ requires_by_perl 'Test::Deep',
 requires_by_perl 'Test::Differences',
 	;
 
+requires_by_perl 'Test::Distribution',
+	;
+
 requires_by_perl 'Test::EOL',
 	;
 
