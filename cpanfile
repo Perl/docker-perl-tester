@@ -187,7 +187,8 @@ requires_by_perl 'Dist::Zilla::PluginBundle::Author::ETHER',
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::ContributorsFile',
-    prior 5.036 => 'use version 0.3.0',
+	prior 5.020 => skip,
+	prior 5.036 => '==0.3.0',
 	;
 
 requires_by_perl 'Dist::Zilla::PluginBundle::Author::OALDERS',
