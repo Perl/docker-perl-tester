@@ -436,6 +436,9 @@ requires_by_perl 'Test::Simple',
 requires_by_perl 'Test::Spelling',
 	;
 
+requires_by_perl 'Test::Strict',
+	;
+
 requires_by_perl 'Test::Synopsis',
 	;
 
