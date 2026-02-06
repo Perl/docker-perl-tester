@@ -367,6 +367,9 @@ requires_by_perl 'Test::Deep',
 	otherwise skip
 	;
 
+requires_by_perl 'Test::DatabaseRow',
+	;
+
 requires_by_perl 'Test::Differences',
 	;
 
