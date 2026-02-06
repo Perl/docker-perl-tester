@@ -360,6 +360,7 @@ requires_by_perl 'Test::Class',
 	;
 
 requires_by_perl 'Test::Compile',
+	prior 5.010 => skip,
 	;
 
 requires_by_perl 'Test::CPAN::Meta',
