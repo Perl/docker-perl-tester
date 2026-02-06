@@ -445,6 +445,9 @@ requires_by_perl 'Test::Strict',
 requires_by_perl 'Test::Synopsis',
 	;
 
+requires_by_perl 'Test::Taint',
+	;
+
 requires_by_perl 'Test::Trap',
 	;
 
