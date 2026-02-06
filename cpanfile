@@ -380,6 +380,9 @@ requires_by_perl 'Test::Fatal',
 	prior 5.012 => '==0.017',
 	;
 
+requires_by_perl 'Test::HTML::Lint',
+	;
+
 requires_by_perl 'Test::LongString',
 	;
 
