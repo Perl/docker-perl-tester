@@ -439,6 +439,9 @@ requires_by_perl 'Test::Spelling',
 requires_by_perl 'Test::Synopsis',
 	;
 
+requires_by_perl 'Test::Taint',
+	;
+
 requires_by_perl 'Test::Trap',
 	;
 
