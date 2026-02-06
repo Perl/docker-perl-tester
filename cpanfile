@@ -403,6 +403,9 @@ requires_by_perl 'Test::MockObject',
 requires_by_perl 'Test::MockTime',
 	;
 
+requires_by_perl 'Test::Mock::Simple',
+	;
+
 requires_by_perl 'Test::Mojibake',
 	;
 
