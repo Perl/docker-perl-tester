@@ -359,6 +359,9 @@ requires_by_perl 'Test::Builder',
 requires_by_perl 'Test::Class',
 	;
 
+requires_by_perl 'Test::Compile',
+	;
+
 requires_by_perl 'Test::CPAN::Meta',
 	;
 
