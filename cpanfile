@@ -390,6 +390,9 @@ requires_by_perl 'Test::Fatal',
 	prior 5.012 => '==0.017',
 	;
 
+requires_by_perl 'Test::File',
+	;
+
 requires_by_perl 'Test::HTML::Lint',
 	;
 
