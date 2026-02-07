@@ -264,6 +264,9 @@ requires_by_perl 'HTML::Tagset',        # Transitive dependency of Plack
 	otherwise skip
 	;
 
+requires_by_perl 'HTTP::Daemon',
+	;
+
 requires_by_perl 'IO::Socket::IP',
 	prior 5.014 => '==0.41',
 	;
