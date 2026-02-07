@@ -287,6 +287,9 @@ requires_by_perl 'Perl::Critic',
 	otherwise      '>= 1.144',
 	;
 
+requires_by_perl 'Perl::Critic::Bangs',
+	;
+
 requires_by_perl 'Perl::Tidy', '>= 20220217',
 	;
 
