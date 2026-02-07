@@ -259,6 +259,9 @@ requires_by_perl 'ExtUtils::MakeMaker',
 requires_by_perl 'File::Temp',
 	;
 
+requires_by_perl 'HTML::Form',
+	;
+
 requires_by_perl 'HTML::Tagset',        # Transitive dependency of Plack
 	prior 5.010 => '==3.20',
 	otherwise skip
