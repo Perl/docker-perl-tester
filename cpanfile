@@ -288,6 +288,7 @@ requires_by_perl 'Perl::Critic',
 	;
 
 requires_by_perl 'Perl::Critic::Bangs',
+	prior 5.010001 => skip,
 	;
 
 requires_by_perl 'Perl::Tidy', '>= 20220217',
