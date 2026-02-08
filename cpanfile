@@ -77,6 +77,9 @@ requires_by_perl 'App::cpanoutdated',
 requires_by_perl 'App::Prove',          # Upgrade to newest version
 	;
 
+requires_by_perl 'Carp::Assert::More',
+	;
+
 requires_by_perl 'CGI',
 	;
 
