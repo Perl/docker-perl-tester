@@ -267,6 +267,9 @@ requires_by_perl 'HTML::Tagset',        # Transitive dependency of Plack
 	otherwise skip
 	;
 
+requires_by_perl 'HTML::TreeBuilder',
+	;
+
 requires_by_perl 'HTTP::Daemon',
 	;
 
