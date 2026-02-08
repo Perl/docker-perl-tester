@@ -496,6 +496,10 @@ requires_by_perl 'Test::Version',
 requires_by_perl 'Test::Warnings',
 	;
 
+requires_by_perl 'Test::WWW::Mechanize',
+	prior 5.010 => skip,
+	;
+
 requires_by_perl 'WWW::Mechanize',
 	;
 
