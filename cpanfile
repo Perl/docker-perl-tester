@@ -78,6 +78,7 @@ requires_by_perl 'App::Prove',          # Upgrade to newest version
 	;
 
 requires_by_perl 'Carp::Assert::More',
+	prior 5.010001 => skip,
 	;
 
 requires_by_perl 'CGI',
