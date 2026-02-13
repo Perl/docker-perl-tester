@@ -128,6 +128,10 @@ requires_by_perl 'Devel::Cover::Report::Coveralls',
 	prior 5.010 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::AssertOS',
+	prior 5.020 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::Plugin::Bugtracker',
 	prior 5.020 => skip,
 	;
