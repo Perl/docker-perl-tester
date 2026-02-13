@@ -182,6 +182,10 @@ requires_by_perl 'Dist::Zilla::Plugin::Regenerate::AfterReleasers',
 	prior 5.020 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::SchwartzRatio',
+	prior 5.020 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::Plugin::StaticInstall',
 	prior 5.020 => skip,
 	;
