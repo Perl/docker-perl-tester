@@ -96,6 +96,9 @@ requires_by_perl 'Code::TidyAll::Plugin::UniqueLines',
 	prior 5.014 => skip,
 	;
 
+requires_by_perl 'Data::Compare',
+	;
+
 requires_by_perl 'Data::OptList',
 	prior 5.012 => '==0.113',
 	otherwise skip
