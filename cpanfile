@@ -158,6 +158,10 @@ requires_by_perl 'Dist::Zilla::Plugin::Deprecated',
 	prior 5.020 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::DOAP',
+	prior 5.020 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::Plugin::Git::Contributors',
 	prior 5.020 => skip,
 	;
