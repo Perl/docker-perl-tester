@@ -362,6 +362,8 @@ requires_by_perl 'Pod::Usage',          # Dependency of Plack
 requires_by_perl 'Pod::Spell', '>= 1.25',
 	;
 
+requires_by_perl 'RDF::DOAP::Lite',
+	;
 
 requires_by_perl 'Software::License::Perl_5',
 	prior 5.012 => '==0.104004',
