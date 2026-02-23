@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Perl versions action step
         id: action
-        uses: perl-actions/perl-versions@v1.3
+        uses: perl-actions/perl-versions@v1.4
         with:
           since-perl: '5.8'
           to-perl: '5.40'
@@ -31,7 +31,7 @@ jobs:
     steps:
       - name: Perl versions action step
         id: action
-        uses: perl-actions/perl-versions@v1.3
+        uses: perl-actions/perl-versions@v1.4
         with:
           since-perl: '5.36'
           to-perl: '5.40'
@@ -46,7 +46,7 @@ jobs:
     steps:
       - name: Perl versions action step
         id: action
-        uses: perl-actions/perl-versions@v1.3
+        uses: perl-actions/perl-versions@v1.4
         with:
           since-perl: '5.42'
           with-devel: 'false'
