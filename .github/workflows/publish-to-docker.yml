@@ -19,10 +19,10 @@ jobs:
     steps:
       - name: Perl versions action step
         id: action
-        uses: perl-actions/perl-versions@v1.3
+        uses: perl-actions/perl-versions@v2.0
         with:
           since-perl: '5.8'
-          to-perl: '5.40'
+          until-perl: '5.40'
           with-devel: 'false'
 
   # bookworm base images only exist for 5.36 and newer.
@@ -35,10 +35,10 @@ jobs:
     steps:
       - name: Perl versions action step
         id: action
-        uses: perl-actions/perl-versions@v1.3
+        uses: perl-actions/perl-versions@v2.0
         with:
           since-perl: '5.36'
-          to-perl: '5.40'
+          until-perl: '5.40'
           with-devel: 'false'
 
   # Similar to the `matrix-bookworm` job, but also add the default tag like `5.42` to the list
@@ -50,7 +50,7 @@ jobs:
     steps:
       - name: Perl versions action step
         id: action
-        uses: perl-actions/perl-versions@v1.3
+        uses: perl-actions/perl-versions@v2.0
         with:
           since-perl: '5.42'
           with-devel: 'false'
