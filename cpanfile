@@ -124,6 +124,7 @@ requires_by_perl 'Devel::CheckOS',
 requires_by_perl 'Devel::Cover',
 	prior 5.010 => skip,
 	prior 5.012 => '==1.42',
+	prior 5.020 => '==1.51',
 	;
 
 requires_by_perl 'Devel::Cover::Report::Codecov',
