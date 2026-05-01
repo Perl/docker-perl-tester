@@ -207,6 +207,30 @@ DOCKER_GITHUB_TOKEN=a-token-or-password
 
 The main branch is named `main` and not `master`.
 
+In order to build the image locally you can run the following command:
+
+```
+docker build . -t tempo --build-arg BASE=5.42
+```
+
+This will create and image called `tempo` based on perl 5.42.
+
+Then you can start a container based on this image using the following command:
+
+```
+docker run -it -w /opt --rm -v$(pwd):/opt tempo  bash
+```
+
+In the container you can try to install a new module using `cpm`:
+
+```
+cpm install -v -g --show-build-log-on-failure Dancer2
+```
+
+You can try it on different versions of Perl.
+
+Once you are happy with the results, add name of the module to `cpanfile`.
+
 # Author
 
 @oalders initiated the project and @atoomic tried to give it more public visibility
