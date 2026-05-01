@@ -211,6 +211,10 @@ requires_by_perl 'Dist::Zilla::Plugin::Test::UnusedVars',
 	prior 5.022 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::VerifyPhases',
+	prior 5.022 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::PluginBundle::Author::DOMM',
 	prior 5.022 => skip,
 	;
