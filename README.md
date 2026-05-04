@@ -231,6 +231,17 @@ You can try it on different versions of Perl.
 
 Once you are happy with the results, add name of the module to `cpanfile`.
 
+## What are the moving parts here?
+
+When the build fails we need to know what changed that caused the failure.
+To make it easier here is a list of things that might have changed.
+
+* The change we make to this repository. This is the only visible change.
+* The content (or the availability) of the BASE perl distributions.
+* The GitHub Action runner.
+* The GitHub Actions. We use tags for the various actions and they might point to a different commit.
+* The CPAN modules. By default we install the most recent release of everything.
+
 # Author
 
 @oalders initiated the project and @atoomic tried to give it more public visibility
