@@ -64,11 +64,8 @@ jobs:
     name: Perl ${{ matrix.perl-version }} buster
     steps:
       - uses: actions/checkout@v6
-      - name: Install deps using cpm
-        uses: perl-actions/install-with-cpm@v1
-        with:
-          cpanfile: 'cpanfile'
-          sudo: false
+      - name: Install deps using cpanm
+        run: cpanm --notest --installdeps .
 
   test-bookwrom-extra:
     runs-on: ubuntu-latest
@@ -88,7 +85,7 @@ jobs:
           apt-get update
           apt-get install  -y --no-install-recommends build-essential gpg git
       - name: Install deps using cpm
-        uses: perl-actions/install-with-cpm@v1
+        uses: perl-actions/install-with-cpm@v2
         with:
           cpanfile: 'cpanfile'
           sudo: false
@@ -111,7 +108,7 @@ jobs:
           apt-get update
           apt-get install  -y --no-install-recommends build-essential gpg git
       - name: Install deps using cpm
-        uses: perl-actions/install-with-cpm@v1
+        uses: perl-actions/install-with-cpm@v2
         with:
           cpanfile: 'cpanfile'
           sudo: false

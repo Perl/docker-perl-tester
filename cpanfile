@@ -384,12 +384,13 @@ requires_by_perl 'Test2::Bundle::Extended',
 
 requires_by_perl 'Test2::Harness',
 	prior 5.010 => skip,
-	prior 5.014 => '==1.000156',
+	prior 5.026 => '==1.000156',    # 1.000170+ requires List::Util >= 1.44; Perl 5.24 ships 1.4202
+	prior 5.030 => '==1.000170',    # 1.000171+ added App::Yath::Script dep which breaks Perl 5.026-5.029
 	;
 
 requires_by_perl 'Test2::Harness::Renderer::JUnit',
 	prior 5.010001 => skip,
-	prior 5.014	   => '==1.000005',
+	prior 5.030    => skip,    # 1.000005 (only release) requires Test2::Harness >= 1.000172
 	;
 
 requires_by_perl 'Test2::Plugin::NoWarnings',
