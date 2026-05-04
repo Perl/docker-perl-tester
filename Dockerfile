@@ -35,9 +35,14 @@ RUN apt-get update && \
 RUN cpanm --self-upgrade || \
     ( echo "# Installing cpanminus:"; curl -sL https://cpanmin.us/ | perl - App::cpanminus )
 
-RUN cpanm -nq App::cpm Carton::Snapshot && rm -rf /root/.cpanm
+RUN cpanm -nq App::cpm Carton::Snapshot && rm -rf /root/.cpanm || \
+    { cpanm -nq Carton::Snapshot; rm -rf /root/.cpanm; true; }
 
-RUN cpm install -g --show-build-log-on-failure --cpanfile /tmp/cpanfile && rm -rf /root/.perl-cpm
+RUN if command -v cpm >/dev/null 2>&1; then \
+        cpm install -g --show-build-log-on-failure --cpanfile /tmp/cpanfile && rm -rf /root/.perl-cpm; \
+    else \
+        cpanm --notest --installdeps /tmp/ && rm -rf /root/.cpanm; \
+    fi
 
 RUN if [ "x${CPANOUTDATED}" = "x1" ] ; then cpan-outdated --exclude-core -p | xargs -n1 cpanm ; else cpan-outdated --exclude-core -p; fi
 

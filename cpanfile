@@ -136,151 +136,151 @@ requires_by_perl 'Devel::Cover::Report::Coveralls',
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::AssertOS',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::Bugtracker',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::CheckChangeLog',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::Clean',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::CopyFilesFromRelease',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::Deprecated',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::DOAP',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::Git::Contributors',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::GitHubREADME::Badge',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::InlineFilesMARCEL',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::InstallRelease',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::OurPkgVersion',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::Regenerate::AfterReleasers',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::SchwartzRatio',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::StaticInstall',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::Test::Perl::Critic',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::Test::DistManifest',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::Test::ReportPrereqs',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::Test::UnusedVars',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::PluginBundle::Author::DOMM',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::PluginBundle::Author::ETHER',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::ContributorsFile',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	prior 5.036 => '==0.3.0',
 	;
 
 requires_by_perl 'Dist::Zilla::PluginBundle::Author::OALDERS',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::PluginBundle::DROLSKY',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::PluginBundle::Milla',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::PluginBundle::RJBS',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	prior 5.026 => '==5.023',
 	prior 5.034 => '==5.025',
 	otherwise	   '>5.028' # 5.028 requires v5.36 whereas following versions only v5.34, so omit it
 	;
 
 requires_by_perl 'Dist::Zilla::PluginBundle::Starter::Git',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::CopyReadmeFromBuild',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::HasVersionTests',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::Homepage',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::KwaliteeTests',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::ReportVersions',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::Signature',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::SourceHutMeta',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Plugin::Test::CheckChanges',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'Dist::Zilla::Role::BundleDeps',
-	prior 5.020 => skip,
+	prior 5.022 => skip,
 	;
 
 requires_by_perl 'ExtUtils::MakeMaker',
@@ -360,7 +360,7 @@ requires_by_perl 'Pod::Readme',
 	;
 
 requires_by_perl 'Pod::Usage',          # Dependency of Plack
-	prior 5.010 => '==1.70',
+	prior 5.010 => skip,    # Plack already skipped for < 5.010; v1.70 no longer installs on 5.8
 	otherwise  skip
 	;
 
@@ -384,12 +384,13 @@ requires_by_perl 'Test2::Bundle::Extended',
 
 requires_by_perl 'Test2::Harness',
 	prior 5.010 => skip,
-	prior 5.014 => '==1.000156',
+	prior 5.026 => '==1.000156',    # 1.000170+ requires List::Util >= 1.44; Perl 5.24 ships 1.4202
+	prior 5.030 => '==1.000170',    # 1.000171+ added App::Yath::Script dep which breaks Perl 5.026-5.029
 	;
 
 requires_by_perl 'Test2::Harness::Renderer::JUnit',
 	prior 5.010001 => skip,
-	prior 5.014	   => '==1.000005',
+	prior 5.030    => skip,    # 1.000005 (only release) requires Test2::Harness >= 1.000172
 	;
 
 requires_by_perl 'Test2::Plugin::NoWarnings',
