@@ -498,6 +498,9 @@ requires_by_perl 'Test::NoWarnings',
 requires_by_perl 'Test::Output',
 	;
 
+requires_by_perl 'Test::PAUSE::Permissions',
+	;
+
 requires_by_perl 'Test::Perl::Critic',
 	;
 
