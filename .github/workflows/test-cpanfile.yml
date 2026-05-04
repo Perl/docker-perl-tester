@@ -65,7 +65,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Install deps using cpanm
-        run: cpanm --notest --installdeps .
+        uses: perl-actions/install-with-cpanm@v2
+        with:
+          cpanfile: 'cpanfile'
+          sudo: false
+          notest: true
 
   test-bookwrom-extra:
     runs-on: ubuntu-latest
