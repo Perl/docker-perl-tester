@@ -175,6 +175,10 @@ requires_by_perl 'Dist::Zilla::Plugin::InlineFilesMARCEL',
 	prior 5.022 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::InsertCopyright',
+	prior 5.022 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::Plugin::InstallRelease',
 	prior 5.022 => skip,
 	;
