@@ -498,7 +498,9 @@ requires_by_perl 'Test::NoWarnings',
 requires_by_perl 'Test::Output',
 	;
 
+# The dependency Getopt::Long::Descriptive requires 5.012
 requires_by_perl 'Test::PAUSE::Permissions',
+	prior 5.012 => skip,
 	;
 
 requires_by_perl 'Test::Perl::Critic',
