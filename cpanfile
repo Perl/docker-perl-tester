@@ -488,6 +488,9 @@ requires_by_perl 'Test::Needs',
 requires_by_perl 'Test::NoTabs',
 	;
 
+requires_by_perl 'Test::NoWarnings',
+	;
+
 requires_by_perl 'Test::Output',
 	;
 
