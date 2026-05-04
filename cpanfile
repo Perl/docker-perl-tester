@@ -183,6 +183,10 @@ requires_by_perl 'Dist::Zilla::Plugin::InstallRelease',
 	prior 5.022 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::MakeMaker::Highlander',
+	prior 5.022 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::Plugin::OurPkgVersion',
 	prior 5.022 => skip,
 	;
