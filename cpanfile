@@ -527,6 +527,9 @@ requires_by_perl 'Test::Taint',
 requires_by_perl 'Test::Trap',
 	;
 
+requires_by_perl 'Test::UseAllModules',
+	;
+
 requires_by_perl 'Test::Vars',
 	prior 5.010 => skip,
 	;
