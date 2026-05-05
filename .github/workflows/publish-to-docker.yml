@@ -23,6 +23,7 @@ jobs:
         with:
           since-perl: '5.8'
           until-perl: '5.40'
+          target:     'perl'
           with-devel: 'false'
 
   # bookworm base images only exist for 5.36 and newer.
@@ -39,6 +40,7 @@ jobs:
         with:
           since-perl: '5.36'
           until-perl: '5.40'
+          target:     'perl'
           with-devel: 'false'
 
   # Similar to the `matrix-bookworm` job, but also add the default tag like `5.42` to the list
@@ -53,6 +55,7 @@ jobs:
         uses: perl-actions/perl-versions@v2.0
         with:
           since-perl: '5.42'
+          target:     'perl'
           with-devel: 'false'
 
   latest-build:
