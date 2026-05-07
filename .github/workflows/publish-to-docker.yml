@@ -73,7 +73,16 @@ jobs:
           dockerfile: Dockerfile
           buildargs: BASE=${{ matrix.debian-version }}
           tags: "latest,${{ matrix.debian-version }}"
-          no_push: ${{ !(github.repository_owner == 'Perl' && github.ref_name == 'main' && (github.event == 'push' || github.event == 'schedule')) }}
+          no_push: ${{ !(
+            github.repository_owner == 'Perl' &&
+            github.ref_name == 'main' &&
+            (
+              github.event == 'push' ||
+              github.event == 'schedule' ||
+              github.event == 'workflow_dispatch' ||
+              github.event.pull_request.merged == true
+            )
+          ) }}
 
   devel-build:
     name: "Build latest"
