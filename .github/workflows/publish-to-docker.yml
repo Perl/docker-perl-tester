@@ -119,10 +119,14 @@ jobs:
           tags: "${{ matrix.perl-version }}-buster,${{ matrix.perl-version }}"
           no_push: *no-push
       - name: Report installed module versions
-        if: github.repository_owner == 'Perl' && github.ref_name == 'main'
+        if: &pushed >-
+          ${{ github.repository_owner == 'Perl' && github.ref_name == 'main' &&
+          (github.event_name == 'push' || github.event_name == 'schedule' ||
+          github.event_name == 'workflow_dispatch' ||
+          github.event.pull_request.merged == true) }}
         run: docker run --rm -v ${{ github.workspace }}/bin:/opt/bin perldocker/perl-tester:${{ matrix.perl-version }}-buster perl /opt/bin/versions.pl > modules-${{ matrix.perl-version }}-buster.json
       - name: Upload module versions
-        if: github.repository_owner == 'Perl' && github.ref_name == 'main'
+        if: *pushed
         uses: actions/upload-artifact@v4
         with:
           name: modules-${{ matrix.perl-version }}-buster
@@ -149,10 +153,10 @@ jobs:
           tags: ${{ matrix.perl-version }}-slim-bookworm
           no_push: *no-push
       - name: Report installed module versions
-        if: github.repository_owner == 'Perl' && github.ref_name == 'main'
+        if: *pushed
         run: docker run --rm -v ${{ github.workspace }}/bin:/opt/bin perldocker/perl-tester:${{ matrix.perl-version }}-slim-bookworm perl /opt/bin/versions.pl > modules-${{ matrix.perl-version }}-slim-bookworm.json
       - name: Upload module versions
-        if: github.repository_owner == 'Perl' && github.ref_name == 'main'
+        if: *pushed
         uses: actions/upload-artifact@v4
         with:
           name: modules-${{ matrix.perl-version }}-slim-bookworm
@@ -179,10 +183,10 @@ jobs:
           tags: ${{ matrix.perl-version }}-slim-bookworm,${{ matrix.perl-version }}
           no_push: *no-push
       - name: Report installed module versions
-        if: github.repository_owner == 'Perl' && github.ref_name == 'main'
+        if: *pushed
         run: docker run --rm -v ${{ github.workspace }}/bin:/opt/bin perldocker/perl-tester:${{ matrix.perl-version }}-slim-bookworm perl /opt/bin/versions.pl > modules-${{ matrix.perl-version }}-slim-bookworm.json
       - name: Upload module versions
-        if: github.repository_owner == 'Perl' && github.ref_name == 'main'
+        if: *pushed
         uses: actions/upload-artifact@v4
         with:
           name: modules-${{ matrix.perl-version }}-slim-bookworm
