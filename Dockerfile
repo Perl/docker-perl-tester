@@ -35,7 +35,13 @@ RUN apt-get update && \
 RUN cpanm --self-upgrade || \
     ( echo "# Installing cpanminus:"; curl -sL https://cpanmin.us/ | perl - App::cpanminus )
 
-RUN cpanm -nq App::cpm Carton::Snapshot && rm -rf /root/.cpanm || \
+RUN set -eux; \
+    if perl -e 'exit(($^V ge v5.24.0) ? 0 : 1)'; then \
+        app_cpm='App::cpm'; \
+    else \
+        app_cpm='App::cpm@0.998003'; \
+    fi; \
+    cpanm -nq "${app_cpm}" Carton::Snapshot && rm -rf /root/.cpanm || \
     { cpanm -nq Carton::Snapshot; rm -rf /root/.cpanm; true; }
 
 RUN if command -v cpm >/dev/null 2>&1; then \

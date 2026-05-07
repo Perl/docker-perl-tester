@@ -5,6 +5,7 @@ This repo is used to build Perl Docker images with various pre-installed bits:
 - the `aspell` and `aspell-en` packages
 - `cpanminus`
 - `App::cpm`
+  - `latest` on Perl 5.24 and newer, `0.998003` on Perl 5.22 and older
 - `Devel::Cover`
 - various testing modules
 - Dist::Zilla with some common plugins (for Perl >= 5.20)
