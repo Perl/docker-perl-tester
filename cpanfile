@@ -203,6 +203,10 @@ requires_by_perl 'Dist::Zilla::Plugin::StaticInstall',
 	prior 5.022 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::Test::PAUSE::Permissions',
+	prior 5.022 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::Plugin::Test::Perl::Critic',
 	prior 5.022 => skip,
 	;
