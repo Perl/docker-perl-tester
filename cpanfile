@@ -562,3 +562,6 @@ requires_by_perl 'Test::WWW::Mechanize',
 requires_by_perl 'WWW::Mechanize',
 	;
 
+requires_by_perl 'YAML::XS',
+	;
+
