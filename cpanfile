@@ -444,6 +444,9 @@ requires_by_perl 'Test::Distribution',
 requires_by_perl 'Test::EOL',
 	;
 
+requires_by_perl 'Test::Exception',
+	;
+
 requires_by_perl 'Test::FailWarnings',
 	;
 
