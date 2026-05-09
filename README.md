@@ -106,8 +106,9 @@ This is tracking the last Perl `devel` version released.
 
 ## OS flavor
 
-Images are built for both Debian `buster` and Debian `bookworm`.  The
-versions without an explicit Debian version are `buster`.
+Images are built for both Debian `buster` (end of life), Debian
+`bookworm` (oldstable), and `trixie` (stable).  The versions without
+an explicit Debian version are `buster`.
 
 # Continuous Integrations
 
