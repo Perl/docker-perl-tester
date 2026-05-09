@@ -151,6 +151,10 @@ requires_by_perl 'Dist::Zilla::Plugin::Clean',
 	prior 5.022 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::CopyFilesFromBuild::Filtered',
+	prior 5.022 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::Plugin::CopyFilesFromRelease',
 	prior 5.022 => skip,
 	;
