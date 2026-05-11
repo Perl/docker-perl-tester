@@ -509,6 +509,9 @@ requires_by_perl 'Test::Mojibake',
 requires_by_perl 'Test::More',
 	;
 
+requires_by_perl 'Test::Most',
+	;
+
 requires_by_perl 'Test::Needs',
 	;
 
