@@ -571,6 +571,9 @@ requires_by_perl 'Test::Vars',
 requires_by_perl 'Test::Version',
 	;
 
+requires_by_perl 'Test::Warn',
+	;
+
 requires_by_perl 'Test::Warnings',
 	;
 
