@@ -541,6 +541,9 @@ requires_by_perl 'Test::Portability::Files',
 requires_by_perl 'Test::RequiresInternet',
 	;
 
+requires_by_perl 'Test::Requires',
+	;
+
 requires_by_perl 'Test::Requires::Git',
 	;
 
