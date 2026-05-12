@@ -207,6 +207,10 @@ requires_by_perl 'Dist::Zilla::Plugin::Regenerate::AfterReleasers',
 	prior 5.022 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::ReportVersions::Tiny',
+	prior 5.022 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::Plugin::SchwartzRatio',
 	prior 5.022 => skip,
 	;
