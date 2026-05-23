@@ -118,6 +118,19 @@ jobs:
           buildargs: BASE=${{ matrix.perl-version }}-buster,CPANOUTDATED=1
           tags: "${{ matrix.perl-version }}-buster,${{ matrix.perl-version }}"
           no_push: *no-push
+      - name: Report installed module versions
+        if: &pushed >-
+          ${{ github.repository_owner == 'Perl' && github.ref_name == 'main' &&
+          (github.event_name == 'push' || github.event_name == 'schedule' ||
+          github.event_name == 'workflow_dispatch' ||
+          github.event.pull_request.merged == true) }}
+        run: docker run --rm -v ${{ github.workspace }}/bin:/opt/bin perldocker/perl-tester:${{ matrix.perl-version }}-buster perl /opt/bin/versions.pl > modules-${{ matrix.perl-version }}-buster.json
+      - name: Upload module versions
+        if: *pushed
+        uses: actions/upload-artifact@v4
+        with:
+          name: modules-${{ matrix.perl-version }}-buster
+          path: modules-${{ matrix.perl-version }}-buster.json
 
   build-bookworm-extra:
     name: "Build bookworm extra versions"
@@ -139,6 +152,15 @@ jobs:
           buildargs: BASE=${{ matrix.perl-version }}-slim-bookworm,CPANOUTDATED=1
           tags: ${{ matrix.perl-version }}-slim-bookworm
           no_push: *no-push
+      - name: Report installed module versions
+        if: *pushed
+        run: docker run --rm -v ${{ github.workspace }}/bin:/opt/bin perldocker/perl-tester:${{ matrix.perl-version }}-slim-bookworm perl /opt/bin/versions.pl > modules-${{ matrix.perl-version }}-slim-bookworm.json
+      - name: Upload module versions
+        if: *pushed
+        uses: actions/upload-artifact@v4
+        with:
+          name: modules-${{ matrix.perl-version }}-slim-bookworm
+          path: modules-${{ matrix.perl-version }}-slim-bookworm.json
 
   build-bookworm-defaults:
     name: "Build bookworm default versions"
@@ -160,3 +182,12 @@ jobs:
           buildargs: BASE=${{ matrix.perl-version }}-slim-bookworm,CPANOUTDATED=1
           tags: ${{ matrix.perl-version }}-slim-bookworm,${{ matrix.perl-version }}
           no_push: *no-push
+      - name: Report installed module versions
+        if: *pushed
+        run: docker run --rm -v ${{ github.workspace }}/bin:/opt/bin perldocker/perl-tester:${{ matrix.perl-version }}-slim-bookworm perl /opt/bin/versions.pl > modules-${{ matrix.perl-version }}-slim-bookworm.json
+      - name: Upload module versions
+        if: *pushed
+        uses: actions/upload-artifact@v4
+        with:
+          name: modules-${{ matrix.perl-version }}-slim-bookworm
+          path: modules-${{ matrix.perl-version }}-slim-bookworm.json
