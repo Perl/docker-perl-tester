@@ -159,6 +159,10 @@ requires_by_perl 'Dist::Zilla::Plugin::CopyFilesFromRelease',
 	prior 5.022 => skip,
 	;
 
+requires_by_perl 'Dist::Zilla::Plugin::CopyrightYearFromGit',
+	prior 5.022 => skip,
+	;
+
 requires_by_perl 'Dist::Zilla::Plugin::Deprecated',
 	prior 5.022 => skip,
 	;
