@@ -54,13 +54,27 @@ jobs:
           since-perl: '5.42'
           with-devel: 'false'
 
+  # Similar to the `matrix-bookworm` job, but also add the default tag like `5.42` to the list
+  prepare-matrix-trixie-defaults:
+    runs-on: ubuntu-latest
+    name: "List perl versions [trixie defaults]"
+    outputs:
+      perl-versions: ${{ steps.action.outputs.perl-versions }}
+    steps:
+      - name: Perl versions action step
+        id: action
+        uses: perl-actions/perl-versions@v2.0
+        with:
+          since-perl: '5.40'
+          with-devel: 'false'
+
   latest-build:
     name: "Build latest"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        debian-version: [buster,bookworm]
+        debian-version: [buster,bookworm,trixie]
 
     steps:
       - uses: actions/checkout@v6
@@ -160,3 +174,25 @@ jobs:
           buildargs: BASE=${{ matrix.perl-version }}-slim-bookworm,CPANOUTDATED=1
           tags: ${{ matrix.perl-version }}-slim-bookworm,${{ matrix.perl-version }}
           no_push: *no-push
+
+  build-trixie-defaults:
+      name: "Build trixie default versions"
+      runs-on: ubuntu-latest
+      needs: prepare-matrix-trixie-defaults
+      strategy:
+        fail-fast: false
+        matrix:
+          perl-version: ${{ fromJson(needs.prepare-matrix-trixie-defaults.outputs.perl-versions) }}
+      steps:
+        - uses: actions/checkout@v6
+        - name: Publish to Registry
+          uses: elgohr/Publish-Docker-Github-Action@v5
+          with:
+            name: perldocker/perl-tester
+            username: ${{ secrets.DOCKER_USERNAME }}
+            password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
+            dockerfile: Dockerfile
+            buildargs: BASE=${{ matrix.perl-version }}-slim-trixie,CPANOUTDATED=1
+            tags: ${{ matrix.perl-version }}-slim-trixie,${{ matrix.perl-version }}
+            no_push: *no-push
+  
