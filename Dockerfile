@@ -37,18 +37,24 @@ RUN cpanm --self-upgrade || \
 
 RUN set -eux; \
     if perl -e 'exit(($^V ge v5.24.0) ? 0 : 1)'; then \
-        app_cpm='App::cpm'; \
+        cpanm -nq App::cpm Carton::Snapshot; \
     else \
-        app_cpm='App::cpm@0.998003'; \
+        # App::cpm releases after 0.998003 require Perl >= 5.24 and the
+        # 0.998003 CPAN release no longer installs on older Perls, so use
+        # the self-contained (fatpacked) cpm script, which has no CPAN deps.
+        # The commit SHA below is what tag 0.998003 points to, pinned so the
+        # download is immutable; the checksum guards the script we run as root.
+        # Note: only the cpm executable is installed here; App::cpm is not in
+        # site_perl (downstream tooling only invokes the CLI).
+        curl -fsSL --retry 3 https://raw.githubusercontent.com/skaji/cpm/1aa61b3c6c8aea2df7a8802206294d268422ccef/cpm -o /usr/local/bin/cpm; \
+        echo '6a27e528cf37635773e738db36c4b4ab4345d5a9d00b8cbd2f2dc01abc73177d  /usr/local/bin/cpm' | sha256sum -c -; \
+        chmod +x /usr/local/bin/cpm; \
+        cpanm -nq Carton::Snapshot; \
     fi; \
-    cpanm -nq "${app_cpm}" Carton::Snapshot && rm -rf /root/.cpanm || \
-    { cpanm -nq Carton::Snapshot; rm -rf /root/.cpanm; true; }
+    rm -rf /root/.cpanm; \
+    cpm --version
 
-RUN if command -v cpm >/dev/null 2>&1; then \
-        cpm install -g --show-build-log-on-failure --cpanfile /tmp/cpanfile && rm -rf /root/.perl-cpm; \
-    else \
-        cpanm --notest --installdeps /tmp/ && rm -rf /root/.cpanm; \
-    fi
+RUN cpm install -g --show-build-log-on-failure --cpanfile /tmp/cpanfile && rm -rf /root/.perl-cpm
 
 RUN if [ "x${CPANOUTDATED}" = "x1" ] ; then cpan-outdated --exclude-core -p | xargs -n1 cpanm ; else cpan-outdated --exclude-core -p; fi
 
