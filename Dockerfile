@@ -37,18 +37,19 @@ RUN cpanm --self-upgrade || \
 
 RUN set -eux; \
     if perl -e 'exit(($^V ge v5.24.0) ? 0 : 1)'; then \
-        app_cpm='App::cpm'; \
+        cpanm -nq App::cpm Carton::Snapshot; \
     else \
-        app_cpm='App::cpm@0.998003'; \
+        # App::cpm releases after 0.998003 require Perl >= 5.24 and the
+        # 0.998003 CPAN release no longer installs on older Perls, so use
+        # the self-contained (fatpacked) cpm script, which has no CPAN deps.
+        curl -fsSL https://raw.githubusercontent.com/skaji/cpm/0.998003/cpm -o /usr/local/bin/cpm; \
+        chmod +x /usr/local/bin/cpm; \
+        cpanm -nq Carton::Snapshot; \
     fi; \
-    cpanm -nq "${app_cpm}" Carton::Snapshot && rm -rf /root/.cpanm || \
-    { cpanm -nq Carton::Snapshot; rm -rf /root/.cpanm; true; }
+    rm -rf /root/.cpanm; \
+    cpm --version
 
-RUN if command -v cpm >/dev/null 2>&1; then \
-        cpm install -g --show-build-log-on-failure --cpanfile /tmp/cpanfile && rm -rf /root/.perl-cpm; \
-    else \
-        cpanm --notest --installdeps /tmp/ && rm -rf /root/.cpanm; \
-    fi
+RUN cpm install -g --show-build-log-on-failure --cpanfile /tmp/cpanfile && rm -rf /root/.perl-cpm
 
 RUN if [ "x${CPANOUTDATED}" = "x1" ] ; then cpan-outdated --exclude-core -p | xargs -n1 cpanm ; else cpan-outdated --exclude-core -p; fi
 
