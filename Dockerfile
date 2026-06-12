@@ -42,7 +42,12 @@ RUN set -eux; \
         # App::cpm releases after 0.998003 require Perl >= 5.24 and the
         # 0.998003 CPAN release no longer installs on older Perls, so use
         # the self-contained (fatpacked) cpm script, which has no CPAN deps.
-        curl -fsSL https://raw.githubusercontent.com/skaji/cpm/0.998003/cpm -o /usr/local/bin/cpm; \
+        # The commit SHA below is what tag 0.998003 points to, pinned so the
+        # download is immutable; the checksum guards the script we run as root.
+        # Note: only the cpm executable is installed here; App::cpm is not in
+        # site_perl (downstream tooling only invokes the CLI).
+        curl -fsSL --retry 3 https://raw.githubusercontent.com/skaji/cpm/1aa61b3c6c8aea2df7a8802206294d268422ccef/cpm -o /usr/local/bin/cpm; \
+        echo '6a27e528cf37635773e738db36c4b4ab4345d5a9d00b8cbd2f2dc01abc73177d  /usr/local/bin/cpm' | sha256sum -c -; \
         chmod +x /usr/local/bin/cpm; \
         cpanm -nq Carton::Snapshot; \
     fi; \
