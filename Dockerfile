@@ -49,9 +49,13 @@ RUN set -eux; \
         curl -fsSL --retry 3 https://raw.githubusercontent.com/skaji/cpm/1aa61b3c6c8aea2df7a8802206294d268422ccef/cpm -o /usr/local/bin/cpm; \
         echo '6a27e528cf37635773e738db36c4b4ab4345d5a9d00b8cbd2f2dc01abc73177d  /usr/local/bin/cpm' | sha256sum -c -; \
         chmod +x /usr/local/bin/cpm; \
-        cpanm -nq Carton::Snapshot; \
+        # Install Carton::Snapshot with cpm rather than cpanm: cpm resolves the
+        # whole dependency graph up front, so it does not trip over the circular
+        # dependencies (Menlo -> Parse::PMFile -> Menlo::CLI::Compat) that make
+        # cpanm's sequential installer bail out on older Perls (issue #152).
+        cpm install -g Carton::Snapshot; \
     fi; \
-    rm -rf /root/.cpanm; \
+    rm -rf /root/.cpanm /root/.perl-cpm; \
     cpm --version
 
 RUN cpm install -g --show-build-log-on-failure --cpanfile /tmp/cpanfile && rm -rf /root/.perl-cpm
