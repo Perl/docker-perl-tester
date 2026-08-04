@@ -1,0 +1,22 @@
+---
+name: 'Build matrix for docker-perl-tester'
+description: 'Generates a dynamic build matrix from perl-versions array segments'
+
+inputs:
+  buster:
+    description: 'Serialised JSON array of buster Perl versions (output of perl-versions, tag perl-buster)'
+    required: true
+  bookworm:
+    description: 'Serialised JSON array of bookworm Perl versions (output of perl-versions, tag perl-bookworm)'
+    required: true
+  trixie:
+    description: 'Serialised JSON array of trixie Perl versions (output of perl-versions, tag perl-trixie)'
+    required: true
+
+outputs:
+  matrix:
+    description: 'The finalized JSON string array ready for strategy.matrix'
+
+runs:
+  using: "node24"
+  main: "dist/index.js"

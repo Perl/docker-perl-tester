@@ -1,10 +1,9 @@
 ARG BASE
-ARG CPANOUTDATED
-FROM perl:${BASE}
+
+FROM perl:${BASE:?}
 
 # redefine after the FROM
 ARG BASE
-#ARG CPANOUTDATED
 ENV BASE_IMAGE=${BASE}
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -24,13 +23,16 @@ RUN echo "DEBUG: BASE value is: ${BASE_IMAGE}" && \
         echo "DEBUG: BASE does not contain buster, skipping archive configuration"; \
     fi
 
-RUN apt-get update && \
-        apt-get dist-upgrade -y && \
-        apt-get -y --no-install-recommends install \
-            aspell aspell-en \
-            build-essential \
-            gpg \
-            git
+RUN apt-get update \
+ && apt-get dist-upgrade -y \
+ && apt-get -y --no-install-recommends install \
+    adduser \
+    aspell aspell-en \
+    build-essential \
+    gpg \
+    git \
+    wget \
+ && true
 
 RUN cpanm --self-upgrade || \
     ( echo "# Installing cpanminus:"; curl -sL https://cpanmin.us/ | perl - App::cpanminus )
@@ -55,8 +57,6 @@ RUN set -eux; \
     cpm --version
 
 RUN cpm install -g --show-build-log-on-failure --cpanfile /tmp/cpanfile && rm -rf /root/.perl-cpm
-
-RUN if [ "x${CPANOUTDATED}" = "x1" ] ; then cpan-outdated --exclude-core -p | xargs -n1 cpanm ; else cpan-outdated --exclude-core -p; fi
 
 WORKDIR /tmp/
 RUN git clone https://github.com/perl-actions/ci-perl-tester-helpers.git --depth 1 && \

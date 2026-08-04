@@ -1,0 +1,19 @@
+{
+  "name": "build-matrix",
+  "version": "1.0.0",
+  "description": "Generates a dynamic build matrix from perl-versions array segments",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "build":      "scripts/npm-build",
+    "build-dist": "ncc build index.js -o dist",
+    "test":       "jest --reporters=jest-tap-reporter"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-tap-reporter": "^1.9.0"
+  }
+}

@@ -212,7 +212,7 @@ The main branch is named `main` and not `master`.
 In order to build the image locally you can run the following command:
 
 ```
-docker build . -t tempo --build-arg BASE=5.28-buster --build-arg CPANOUTDATED=1
+docker build . -t tempo --build-arg BASE=5.28-buster
 ```
 
 This will create and image called `tempo` based on perl 5.28.

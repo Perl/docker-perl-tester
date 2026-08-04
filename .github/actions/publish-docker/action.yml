@@ -1,0 +1,61 @@
+---
+name:               "Publish Docker Image"
+description:        "Build and publish a perl-tester Docker image to Docker Hub"
+
+inputs:
+  base:
+    description:    "Docker base image tag"
+    required:       true
+  hub-password:
+    description:    "Docker Hub password"
+    required:       true
+  hub-username:
+    description:    "Docker Hub username"
+    required:       true
+  tags:
+    description:    "Docker image tags (comma-separated)"
+    required:       true
+
+runs:
+  using:            "composite"
+
+  steps:
+    # Build only — make image locally available for testing
+    - name:         "Build image"
+      uses:         elgohr/Publish-Docker-Github-Action@v5
+      with:
+        buildargs:  "BASE=${{ inputs.base }}"
+        dockerfile: "Dockerfile"
+        name:       "perldocker/perl-tester"
+        no_push:    true
+        tags:       "${{ inputs.tags }}"
+
+    - name:         "Test image"
+      if:           success ()
+      env:
+        TAGS:       "${{ inputs.tags }}"
+      shell:        "bash"
+      run:          |
+        image="perldocker/perl-tester:${TAGS%%,*}"
+        docker run --rm -v "${PWD}:${PWD}" -w "${PWD}" "${image}" sh test-image-contract.sh
+
+    # Push — local layer cache from the build step makes this nearly instant
+    - name:         "Push image"
+      if:           >-
+        success ()
+        && github.repository_owner == 'Perl'
+        && github.ref_name == 'main'
+        && (
+          github.event_name == 'push'
+          || github.event_name == 'schedule'
+          || github.event_name == 'workflow_dispatch'
+          || github.event.pull_request.merged == true
+        )
+      uses:         elgohr/Publish-Docker-Github-Action@v5
+      with:
+        dockerfile: "Dockerfile"
+        name:       "perldocker/perl-tester"
+        no_push:    false
+        password:   "${{ inputs.hub-password }}"
+        tags:       "${{ inputs.tags }}"
+        username:   "${{ inputs.hub-username }}"
